@@ -22,7 +22,6 @@ Plug 'gillyb/stable-windows'
 
 call plug#end()
 
-source $HOME/.config/nvim/terminal.vim
 source $HOME/.config/nvim/ale.vim
 
 :set expandtab
@@ -135,9 +134,11 @@ inoremap [[; [];<Left><Left>
 imap <c-s-t> <plug>(fzf-complete-path)
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --hidden --fixed-strings --follow --ignore-case --no-ignore --glob "!.git/*" --color=always '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --hidden --fixed-strings --follow --ignore-case --glob "!.git/*" --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
 
 nnoremap <leader>rg :Rg<CR>
+nnoremap tt :16 split term://zsh<CR>i
+tnoremap <Esc> <C-\><C-n><C-w>c
