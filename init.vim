@@ -16,13 +16,18 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'rhysd/vim-clang-format'
-Plug 'gillyb/stable-windows'
+Plug 'mechatroner/minimal_gdb'
 
 call plug#end()
 
 source $HOME/.config/nvim/ale.vim
+source $HOME/.config/nvim/terminal.vim
+source $HOME/.config/nvim/abbrev.vim
+source $HOME/.config/nvim/cpptemplates.vim
+source $HOME/.config/nvim/maketemplates.vim
+source $HOME/.config/nvim/cmaketemplates.vim
+source $HOME/.config/nvim/shtemplates.vim
 
 :set expandtab
 :set copyindent
@@ -80,36 +85,34 @@ let g:fzf_colors =
 nnoremap <space> G
 
 let mapleader = ';'
-nnoremap <leader>nh :noh<CR>
-nnoremap <leader>conf :e ~/.config/nvim/init.vim<CR>
-nnoremap <leader>tt :NERDTreeToggle<CR>
-nnoremap <leader>tf :NERDTreeFind<CR>
-" nnoremap <leader>g :GitGutterToggle<CR>
-nnoremap <leader>nt :tabnew<CR>
-nnoremap <leader>ct :tabclose<CR>
-nnoremap <leader>' :Marks<CR>
-nnoremap <leader>/ :Lines<CR>
-nnoremap <leader>rg :Rg<CR>
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>gd :ALEGoToDefinition<CR>
-nnoremap <leader>gt :ALEGoToDefinitionInTab<CR>
-nnoremap <leader>ah :ALEHover<CR>
-nnoremap <leader>ne :ALENext<cr>
-nnoremap <leader>pe :ALEPrevious<cr>
-nnoremap <leader>fr :ALEFindReferences<cr>
+nnoremap <silent><leader>nh :noh<CR>
+nnoremap <silent><leader>conf :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent><leader>tt :NERDTreeToggle<CR>
+nnoremap <silent><leader>tf :NERDTreeFind<CR>
+nnoremap <silent><leader>nt :tabnew<CR>
+" nnoremap <silent><leader>g :GitGutterToggle<CR>
+nnoremap <silent><leader>ct :tabclose<CR>cpptemplates
+nnoremap <silent><leader>' :Marks<CR>
+nnoremap <silent><leader>/ :Lines<CR>
+nnoremap <silent><leader>rg :Rg<CR>
+nnoremap <silent><leader>ff :Files<CR>
+nnoremap <silent><leader>gd :ALEGoToDefinition<CR>
+nnoremap <silent><leader>gt :ALEGoToDefinitionInTab<CR>
+nnoremap <silent><leader>ah :ALEHover<CR>
+nnoremap <silent><leader>ne :ALENext<cr>
+nnoremap <silent><leader>pe :ALEPrevious<cr>
+nnoremap <silent><leader>fr :ALEFindReferences<cr>
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap <leader>ea <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap <leader>ea <Plug>(EasyAlign)
+xmap <silent><leader>ea <Plug>(EasyAlign)
+nmap <silent><leader>ea <Plug>(EasyAlign)
 
-nmap <leader>bb :Buffers<CR>
-nmap <leader>be :enew<CR>
-nmap <leader>bn :bnext<CR>
-nmap <leader>bp :bprevious<CR>
-nmap <leader>bd :bdelete<CR>
+nmap <silent><leader>bb :Buffers<CR>
+nmap <silent><leader>be :enew<CR>
+nmap <silent><leader>bn :bnext<CR>
+nmap <silent><leader>bp :bprevious<CR>
+nmap <silent><leader>qq :bdelete<CR>
 
-set pastetoggle=<leader>z
+set pastetoggle=<silent><leader>z
 
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
@@ -127,11 +130,12 @@ inoremap (() ()<Left>
 inoremap ((; ();<Left><Left>
 inoremap "" ""<Left>
 inoremap '' ''<Left>
-inoremap <> <><Left>
+inoremap <<> <><Left>
 inoremap [[] []<Left>
 inoremap [[; [];<Left><Left>
-
+imap <C-u> _<Esc>mza<C-Right><Esc>bgUiw`zi<Del>
 imap <c-s-t> <plug>(fzf-complete-path)
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --hidden --fixed-strings --follow --ignore-case --glob "!.git/*" --color=always '.shellescape(<q-args>), 1,
@@ -139,6 +143,4 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
 
-nnoremap <leader>rg :Rg<CR>
-nnoremap tt :16 split term://zsh<CR>i
-tnoremap <Esc> <C-\><C-n><C-w>c
+nnoremap <silent><leader>rg :Rg<CR>cpptemplates

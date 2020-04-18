@@ -10,6 +10,7 @@ let g:ale_c_gcc_options = '-std=gnu11 -Wall -Wextra -Wundef -Wpointer-arith -Wco
 let g:ale_cpp_gcc_options = '-std=gnu++1z -Wall -Wextra -Wundef -Wpointer-arith -Wconversion -Wunreachable-code -Wcast-align -Wstrict-overflow=5 -Wshadow -Wfloat-equal -Wswitch-enum -fpie'
 
 let g:ale_linters = {
+            \ 'asm' : ['nasm'],
             \   'c': ['gcc', 'clangtidy', 'ccls' ],
             \   'cpp': ['g++', 'clangtidy', 'ccls' ],
             \}
