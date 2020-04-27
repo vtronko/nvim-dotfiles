@@ -1,17 +1,20 @@
 let g:terminal_buffer = -1
 
-function! FunctionCloseTerminal()
-    function! CheckAndClose(winid)
-        if (a:winid == g:terminal_buffer)
-            echo "close"
-            execute a:winid.'wincmd c'
+" function! FunctionCloseTerminal()
+function! FunctionCloseAllTerminals()
+    function! CheckAndClose(win_nr)
+        let l:winid = win_getid(a:win_nr)
+        let l:bufid = nvim_win_get_buf(l:winid)
+        let l:buftype = nvim_buf_get_option(l:bufid, 'buftype')
+        if (l:buftype == 'terminal')
+            execute a:win_nr.'wincmd c'
         endif
     endfunction
     tabdo windo call CheckAndClose(winnr())
 endfunction
 
 function! FunctionOpenTerminal()
-    call FunctionCloseTerminal()
+    call FunctionCloseAllTerminals()
     if !bufexists(g:terminal_buffer)
         :16 split term://zsh
         let g:terminal_buffer = bufnr('%')
@@ -23,5 +26,5 @@ function! FunctionOpenTerminal()
     endif
 endfunction
 
-nnoremap tt :call FunctionOpenTerminal()<CR>i
-tnoremap <silent><Esc> <C-\><C-n>:call FunctionCloseTerminal()<Cr>
+nnoremap <silent>tt :call FunctionOpenTerminal()<CR>i
+tnoremap <silent><Esc> <C-\><C-n>:call FunctionCloseAllTerminals()<Cr>

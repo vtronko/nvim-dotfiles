@@ -2,24 +2,24 @@ let g:ale_enabled = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
-let g:ale_completion_enabled = 1
-let g:ale_c_parse_makefile = 1
-let g:ale_c_gcc_executable= 'gcc'
-let g:ale_cpp_gcc_executable= 'gcc'
-let g:ale_c_gcc_options = '-std=gnu11 -Wall -Wextra -Wundef -Wpointer-arith -Wconversion -Wunreachable-code -Wcast-align -Wstrict-overflow=5 -Wshadow -Wfloat-equal -Wswitch-enum -fpie'
-let g:ale_cpp_gcc_options = '-std=gnu++1z -Wall -Wextra -Wundef -Wpointer-arith -Wconversion -Wunreachable-code -Wcast-align -Wstrict-overflow=5 -Wshadow -Wfloat-equal -Wswitch-enum -fpie'
+" let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
+" let g:ale_c_parse_makefile = 1
+let g:ale_c_parse_makefile = 0
+let g:ale_c_gcc_executable= 'clang'
+let g:ale_cpp_clang_executable= 'clang'
+let g:ale_c_clang_options = '-std=gnu11 -Wall -Wextra -Wundef -Wpointer-arith -Wconversion -Wunreachable-code -Wcast-align -Wstrict-overflow=5 -Wshadow -Wfloat-equal -Wswitch-enum -fpie'
+let g:ale_cpp_clang_options = '-std=gnu++1z -Wall -Wextra -Wundef -Wpointer-arith -Wconversion -Wunreachable-code -Wcast-align -Wstrict-overflow=5 -Wshadow -Wfloat-equal -Wswitch-enum -fpie'
 
 let g:ale_linters = {
             \ 'asm' : ['nasm'],
-            \   'c': ['gcc', 'clangtidy', 'ccls' ],
-            \   'cpp': ['g++', 'clangtidy', 'ccls' ],
+            \  'c': ['clang', 'clang-tidy'],
+            \  'cpp': ['clang', 'clang-tidy'],
             \}
-let g:ale_c_ccls_init_options = {
-	\ 'cacheDirectory': '/tmp/ccls/c-cache',
-	\ 'cacheFormat': 'binary',
-	\}
 
-let g:ale_cpp_ccls_init_options = {
-	\ 'cacheDirectory': '/tmp/ccls/cpp-cache',
-	\ 'cacheFormat': 'binary',
-	\}
+" nnoremap <silent><leader>gd :ALEGoToDefinition<CR>
+" nnoremap <silent><leader>gt :ALEGoToDefinitionInTab<CR>
+" nnoremap <silent><leader>ah :ALEHover<CR>
+nnoremap <silent><leader>ef :ALENext<cr>
+nnoremap <silent><leader>eb :ALEPrevious<cr>
+" nnoremap <silent><leader>fr :ALEFindReferences<cr>
