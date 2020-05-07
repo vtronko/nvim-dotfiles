@@ -1,7 +1,8 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Plug 'ayu-theme/ayu-vim'
+Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
+Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'andymass/vim-matchup'
@@ -36,7 +37,9 @@ source $HOME/.config/nvim/maketemplates.vim
 source $HOME/.config/nvim/cmaketemplates.vim
 source $HOME/.config/nvim/shtemplates.vim
 
+:set splitbelow
 :set expandtab
+:set clipboard=unnamedplus
 :set copyindent
 :set preserveindent
 :set softtabstop=4
@@ -106,7 +109,7 @@ nnoremap <silent><leader>ct :tabclose<CR>cpptemplates
 nnoremap <silent><leader>' :Marks<CR>
 nnoremap <silent><leader>/ :Lines<CR>
 nnoremap <silent><leader>rg :Rg<CR>
-nnoremap <silent><leader>ff :Files<CR>
+nnoremap <silent><leader>fd :Fd<CR>
 nnoremap <silent><leader>delm :delmarks a-zA-Z0-9[]<CR>
 
 xmap <silent><leader>ea <Plug>(EasyAlign)
@@ -119,6 +122,8 @@ nmap <silent><leader>bp :bprevious<CR>
 nmap <silent><leader>qq :bdelete<CR>
 
 set pastetoggle=<silent><leader>z
+
+inoremap <C-s> <Esc>:Snippets<CR>
 
 " inoremap <C-h> <Left>
 " inoremap <C-j> <Down>
@@ -142,9 +147,21 @@ inoremap '' ''<Left>
 inoremap <<> <><Left>
 inoremap [[] []<Left>
 inoremap [[; [];<Left><Left>
+
 imap <C-u> _<Esc>mza<C-Right><Esc>bgUiw`zi<Del>
 imap <c-s-t> <plug>(fzf-complete-path)
+
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+
 nnoremap q <nop>
+
+command! -bang -nargs=? -complete=dir Fd
+  \ call fzf#vim#grep(
+  \   'fd '.shellescape(<q-args>),
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -152,5 +169,3 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
-
-nnoremap <silent><leader>rg :Rg<CR>cpptemplates
