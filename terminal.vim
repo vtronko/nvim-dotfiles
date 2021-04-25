@@ -16,11 +16,12 @@ endfunction
 function! FunctionOpenTerminal()
     call FunctionCloseAllTerminals()
     if !bufexists(g:terminal_buffer)
-        :16 split term://zsh
+        :botright split term://zsh
         let g:terminal_buffer = bufnr('%')
+        call nvim_win_set_height(0, 16)
         set nobuflisted
     else
-        :16 split
+        :botright split
         call nvim_win_set_buf(0, g:terminal_buffer)
         call nvim_win_set_height(0, 16)
     endif

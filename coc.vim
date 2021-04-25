@@ -1,10 +1,8 @@
-
-" Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=2
+" set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -44,6 +42,10 @@ nmap <silent><leader>gd <Plug>(coc-definition)
 nmap <silent><leader>gy <Plug>(coc-type-definition)
 nmap <silent><leader>gi <Plug>(coc-implementation)
 nmap <silent><leader>gr <Plug>(coc-references)
+nmap <silent><leader>ep <Plug>(coc-diagnostic-prev)
+nmap <silent><leader>en <Plug>(coc-diagnostic-next)
+nmap <silent><leader>gh :CocCommand clangd.switchSourceHeader<CR>
+nmap <silent><leader>gs :CocCommand clangd.symbolInfo<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent><leader>gc :call <SID>show_documentation()<CR>
@@ -66,4 +68,4 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>fmt <Plug>(coc-format-selected)
 nmap <leader>fmt <Plug>(coc-format-selected)
 
-nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>gf <Plug>(coc-fix-current)
