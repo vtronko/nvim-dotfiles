@@ -168,11 +168,12 @@ M.mappings.plugin = {
       format = "<leader>fm",
    },
    telescope = {
+      open = "<leader>ts",
       buffers = "<leader>fb",
       find_files = "<leader>ff",
       find_hiddenfiles = "<leader>fa",
       git_commits = "<leader>cm",
-      git_status = "<leader>gt",
+      git_status = "<leader>gs",
       help_tags = "<leader>fh",
       live_grep = "<leader>fw",
       oldfiles = "<leader>fo",

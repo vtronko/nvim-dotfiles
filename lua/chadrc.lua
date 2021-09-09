@@ -78,17 +78,17 @@ M.plugin_status = {
    colorizer = true,
    comment = true, -- universal commentor
    dashboard = false, -- a nice looking dashboard
-   easymotion = true, -- easymotion
+   hop = true, -- hop — easymotion alternative
+   easymotion = false, -- easymotion
    esc_insertmode = true, -- escape from insert mode using custom keys
    feline = true, -- statusline
    lualine = false, -- statusline
    gitsigns = true, -- gitsigns in statusline
    lspsignature = true, -- lsp enhancements
-   neoformat = true, -- universal formatter
+   neoformat = false, -- universal forlatter
    neoscroll = true, -- smooth scroll
    rainbow = false, -- rainbow parentheses
    telescope_media = true, -- see media files in telescope picker
-   telescope_vim_bookmarks = true, -- bookmarks plugin
    toggleterm = true, -- toggleterm
    truezen = true, -- no distraction mode for nvim
    vim_fugitive = true, -- git in nvim
@@ -137,6 +137,9 @@ M.mappings = {
    -- lspcustom = {
    --     toggler = { '<leader>lsp' },
    -- },
+
+   reload_config = "<leader>rl",
+   hop_motion = " ";
 }
 
 -- all plugins related mappings
@@ -176,7 +179,7 @@ M.mappings.plugin = {
       buffers = "<leader>bb",
       find_files = "<leader>fd",
       git_commits = "<leader>cm",
-      git_status = "<leader>gt",
+      git_status = "<leader>gs",
       help_tags = "<leader>fh",
       live_grep = "<leader>rg",
       oldfiles = "<leader>hh",
@@ -193,7 +196,6 @@ M.mappings.plugin = {
    vim_fugitive = {
       diff_get_2 = "<leader>gh",
       diff_get_3 = "<leader>gl",
-      git = "<leader>gs",
       git_blame = "<leader>gb",
    },
 }
@@ -241,6 +243,16 @@ M.custom.mappings = {
         "n",
         "tt",
         ":ToggleTerm<CR>",
+    },
+    move_visual_up = {
+        "v",
+        "K",
+        ":move '<-2<CR>gv-gv"
+    },
+    move_visual_down = {
+        "v",
+        "J",
+        ":move '>+1<CR>gv-gv"
     },
 }
 

@@ -98,8 +98,12 @@ M.misc = function()
 --       map("n", maps.update_nvchad, ":NvChadUpdate <CR>")
 --
       -- add ChadReload command and maping
-      -- cmd "silent! command! NvChadReload lua require('nvchad').reload_config()"
+      cmd "silent! command! NvChadReload lua require('nvchad').reload_config()"
+      map("n", maps.reload_config, ":NvChadReload<CR>")
    end
+
+   map("n", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
+   map("v", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
 
    local function user_config_mappings()
       local custom_maps = config.custom.mappings or ""
@@ -168,6 +172,7 @@ end
 M.telescope = function()
    local m = plugin_maps.telescope
 
+   map("n", m.open, ":Telescope <CR>")
    map("n", m.buffers, ":Telescope buffers <CR>")
    map("n", m.find_files, ":Telescope find_files <CR>")
    map("n", m.find_hiddenfiles, ":Telescope find_files hidden=true <CR>")
@@ -196,7 +201,6 @@ end
 M.vim_fugitive = function()
    local m = plugin_maps.vim_fugitive
 
-   map("n", m.git, ":Git <CR>")
    map("n", m.git_blame, ":Git blame <CR>")
    map("n", m.diff_get_2, ":diffget //2 <CR>")
    map("n", m.diff_get_3, ":diffget //3 <CR>")

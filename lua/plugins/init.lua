@@ -314,8 +314,7 @@ return packer.startup(function()
             end,
          },
          {
-            "tom-anders/telescope_vim_bookmarks.nvim",
-            disable = not plugin_status.telescope_vim_bookmarks,
+             "tom-anders/telescope-vim-bookmarks.nvim",
             -- setup = function()
             --    require("core.mappings").telescope_media()
             -- end,
@@ -333,6 +332,16 @@ return packer.startup(function()
    use {
        'easymotion/vim-easymotion',
        disable = not plugin_status.easymotion,
+   }
+
+   use {
+       'phaazon/hop.nvim',
+       disable = not plugin_status.hop,
+         as = 'hop',
+         config = function()
+             -- you can configure Hop the way you like here; see :h hop-config
+             require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+         end
    }
 
    use {
