@@ -14,14 +14,14 @@ M.ui = {
    theme_toggler = {
       enabled = false,
       fav_themes = {
-         "nord",
-         "everforest",
+      --    "nord",
+      --    "everforest",
       },
    },
 
    -- Enable this only if your terminal has the colorscheme set which nvchad uses
    -- For Ex : if you have onedark set in nvchad , set onedark's bg color on your terminal
-   transparency = true,
+   transparency = false,
 }
 
 -- plugin related ui options
@@ -33,7 +33,7 @@ M.ui.plugin = {
       hidden = {},
       shown = {},
       -- default, round , slant , block , arrow
-      style = "round",
+      style = "block",
    },
 }
 
@@ -52,7 +52,7 @@ M.options = {
    number = true,
    -- relative numbers in normal mode tool at the bottom of options.lua
    numberwidth = 1,
-   permanent_undo = true,
+   permanent_undo = false,
    shiftwidth = 4,
    smartindent = true,
    tabstop = 4, -- Number of spaces that a <Tab> in the file counts for
@@ -81,12 +81,14 @@ M.plugin_status = {
    easymotion = true, -- easymotion
    esc_insertmode = true, -- escape from insert mode using custom keys
    feline = true, -- statusline
+   lualine = false, -- statusline
    gitsigns = true, -- gitsigns in statusline
    lspsignature = true, -- lsp enhancements
    neoformat = true, -- universal formatter
    neoscroll = true, -- smooth scroll
    rainbow = false, -- rainbow parentheses
    telescope_media = true, -- see media files in telescope picker
+   telescope_vim_bookmarks = true, -- bookmarks plugin
    toggleterm = true, -- toggleterm
    truezen = true, -- no distraction mode for nvim
    vim_fugitive = true, -- git in nvim
@@ -132,8 +134,9 @@ M.mappings = {
       -- new_window = "<leader>w",
    },
 
-   -- update nvchad from nvchad, chadness 101
-   -- update_nvchad = "<leader>uu",
+   -- lspcustom = {
+   --     toggler = { '<leader>lsp' },
+   -- },
 }
 
 -- all plugins related mappings
@@ -152,9 +155,6 @@ M.mappings.plugin = {
       default_keys = "<leader>dk",
       user_keys = "<leader>uk",
    },
-   comment = {
-      toggle = "<leader>/", -- trigger comment on a single/selected lines/number prefix
-   },
    dashboard = {
       bookmarks = "<leader>bm",
       new_file = "<leader>fn", -- basically create a new buffer
@@ -163,9 +163,9 @@ M.mappings.plugin = {
       session_save = "<leader>s", -- save a session
    },
    -- note: this is an edditional mapping to escape, escape key will still work
-   better_escape = {
-      esc_insertmode = { "<leader>tt" }, -- multiple mappings allowed
-   },
+   -- better_escape = {
+   --    esc_insertmode = { "<leader>tt" }, -- multiple mappings allowed
+   -- },
    nvimtree = {
       toggle = "<leader>tt", -- file manager
    },
@@ -217,14 +217,24 @@ M.custom.mappings = {
         "<leader>nt",
         ":tabnext<CR>"
     },
+    close_tab = {
+        "n",
+        "<leader>tc",
+        ":tabclose<CR>"
+    },
     disable_recording = {
         "n",
         "q",
         "<Nop>"
     },
-    disable_default_commenter = {
+    disable_comm_normal = {
         "n",
         "<leader>gc",
+        "<Nop>",
+    },
+    disable_comm_normal_2 = {
+        "n",
+        "gcc",
         "<Nop>",
     },
     toggleterm = {

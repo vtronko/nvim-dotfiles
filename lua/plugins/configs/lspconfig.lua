@@ -63,12 +63,12 @@ local function setup_servers()
    lspinstall.setup()
    local servers = lspinstall.installed_servers()
 
-   lspconfig['clangd'].setup {
-       on_attach = on_attach,
-       flags = {
-           debounce_text_changes = 150,
-       }
-   }
+   -- lspconfig['clangd'].setup {
+   --     on_attach = on_attach,
+   --     flags = {
+   --         debounce_text_changes = 150,
+   --     }
+   -- }
 
    for _, lang in pairs(servers) do
       if lang ~= "lua" then

@@ -85,7 +85,21 @@ end
 M.comment = function()
    local present, nvim_comment = pcall(require, "nvim_comment")
    if present then
-      nvim_comment.setup()
+      nvim_comment.setup({
+          -- Linters prefer comment and line to have a space in between markers
+          marker_padding = true,
+          -- should comment out empty or whitespace only lines
+          comment_empty = true,
+          -- Should key mappings be created
+          create_mappings = true,
+          -- Normal mode mapping left hand side
+          line_mapping = "<leader>//",
+          -- Visual/Operator mapping left hand side
+          operator_mapping = "<leader>/",
+          -- Hook function to call before commenting takes place
+          hook = nil
+      })
+
    end
 end
 
@@ -105,12 +119,12 @@ end
 M.neoscroll = function()
    pcall(function()
        require("neoscroll").setup({
-           -- All these keys will be mapped to their corresponding default scrolling animation
-           hide_cursor = true,          -- Hide cursor while scrolling
-           stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-           use_local_scrolloff = true, -- Use the local scope of scrolloff instead of the global scope
-           respect_scrolloff = true,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-           cursor_scrolls_alone = false, -- The cursor will keep on scrolling even if the window cannot scroll further
+           -- -- All these keys will be mapped to their corresponding default scrolling animation
+           hide_cursor = false,          -- Hide cursor while scrolling
+           stop_eof = false,             -- Stop at <EOF> when scrolling downwards
+           -- use_local_scrolloff = true, -- Use the local scope of scrolloff instead of the global scope
+           respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+           cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
            easing_function = nil        -- Default easing function
        })
    end)
@@ -124,12 +138,14 @@ M.neoscroll = function()
    t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '225', [['sine']]}}
    t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '225', [['sine']]}}
    -- Pass "nil" to disable the easing animation (constant scrolling speed)
-   t['<C-y>'] = {'scroll', {'-0.10', 'false', '150', [['sine']] }}
-   t['<C-e>'] = {'scroll', { '0.10', 'false', '150', [['sine']] }}
+   t['<C-y>'] = {'scroll', {'-0.10', 'false', '100', [['sine']] }}
+   t['<C-e>'] = {'scroll', { '0.10', 'false', '100', [['sine']] }}
    -- When no easing function is provided the default easing function (in this case "quadratic") will be used
    t['zt']    = {'zt', {'100'}, [['sine']] }
    t['zz']    = {'zz', {'100'}, [['sine']] }
    t['zb']    = {'zb', {'100'}, [['sine']] }
+   -- t['gg']    = {'scroll', {'-2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
+   -- t['G']     = {'scroll', {'2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
 
    pcall(function()
        require('neoscroll.config').set_mappings(t)

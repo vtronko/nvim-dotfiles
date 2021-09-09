@@ -53,13 +53,13 @@ M.misc = function()
       end
 
       -- check the theme toggler
-      if config.ui.theme_toggler then
-         map(
-            "n",
-            maps.theme_toggler,
-            ":lua require('nvchad').toggle_theme(require('core.utils').load_config().ui.theme_toggler.fav_themes) <CR>"
-         )
-      end
+      -- if config.ui.theme_toggler then
+      --    map(
+      --       "n",
+      --       maps.theme_toggler,
+      --       ":lua require('nvchad').toggle_theme(require('utils').load_config().ui.theme_toggler.fav_themes) <CR>"
+      --    )
+      -- end
    end
 
    local function required_mappings()
@@ -94,9 +94,9 @@ M.misc = function()
       cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
 
       -- add NvChadUpdate command and mapping
-      cmd "silent! command! NvChadUpdate lua require('nvchad').update_nvchad()"
-      map("n", maps.update_nvchad, ":NvChadUpdate <CR>")
-
+--       cmd "silent! command! NvChadUpdate lua require('nvchad').update_nvchad()"
+--       map("n", maps.update_nvchad, ":NvChadUpdate <CR>")
+--
       -- add ChadReload command and maping
       -- cmd "silent! command! NvChadReload lua require('nvchad').reload_config()"
    end
@@ -144,12 +144,6 @@ M.chadsheet = function()
       m.user_keys,
       ":lua require('cheatsheet').show_cheatsheet_telescope{bundled_cheatsheets = false, bundled_plugin_cheatsheets = false } <CR>"
    )
-end
-
-M.comment = function()
-   local m = plugin_maps.comment.toggle
-   map("n", m, ":CommentToggle <CR>")
-   map("v", m, ":CommentToggle <CR>")
 end
 
 M.dashboard = function()

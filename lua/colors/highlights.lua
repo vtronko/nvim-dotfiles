@@ -51,8 +51,8 @@ else
    fg("Comment", grey_fg)
 end
 
--- Disable cusror line
-cmd "hi clear CursorLine"
+-- -- Disable cusror line
+-- cmd "hi clear CursorLine"
 -- Line number
 fg("cursorlinenr", white)
 
@@ -95,8 +95,8 @@ fg("DashboardHeader", grey_fg)
 fg("DashboardShortcut", grey_fg)
 
 -- Git signs
-fg_bg("DiffAdd", nord_blue, "none")
-fg_bg("DiffChange", grey_fg, "none")
+fg_bg("DiffAdd", green, "none")
+fg_bg("DiffChange", yellow, "none")
 fg_bg("DiffModified", nord_blue, "none")
 fg_bg("DiffDelete", red, "none")
 

@@ -51,6 +51,15 @@ return packer.startup(function()
    }
 
    use {
+       "hoob3rt/lualine.nvim",
+       disable = not plugin_status.lualine,
+       after = "nvim-web-devicons",
+       config = function()
+           require "plugins.configs.statusline"
+       end,
+   }
+
+   use {
       "akinsho/bufferline.nvim",
       disable = not plugin_status.bufferline,
       after = "nvim-web-devicons",
@@ -217,6 +226,11 @@ return packer.startup(function()
    }
 
    use {
+       "hrsh7th/cmp-path",
+       after = "cmp-nvim-lua"
+   }
+
+   use {
       "hrsh7th/cmp-buffer",
       after = "cmp-nvim-lsp",
    }
@@ -254,12 +268,8 @@ return packer.startup(function()
    use {
       "terrortylor/nvim-comment",
       disable = not plugin_status.comment,
-      cmd = "CommentToggle",
       config = function()
          require("plugins.configs.others").comment()
-      end,
-      setup = function()
-         require("core.mappings").comment()
       end,
    }
 
@@ -303,6 +313,14 @@ return packer.startup(function()
                require("core.mappings").telescope_media()
             end,
          },
+         {
+            "tom-anders/telescope_vim_bookmarks.nvim",
+            disable = not plugin_status.telescope_vim_bookmarks,
+            -- setup = function()
+            --    require("core.mappings").telescope_media()
+            -- end,
+         },
+
       },
       config = function()
          require "plugins.configs.telescope"

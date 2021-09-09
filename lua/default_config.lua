@@ -11,13 +11,6 @@ M.ui = {
    theme = "onedark",
 
    -- theme toggler, toggle between two themes, see theme_toggleer mappings
-   theme_toggler = {
-      enabled = false,
-      fav_themes = {
-         "onedark",
-         "gruvchad",
-      },
-   },
 
    -- Enable this only if your terminal has the colorscheme set which nvchad uses
    -- For Ex : if you have onedark set in nvchad , set onedark's bg color on your terminal
@@ -119,7 +112,7 @@ M.mappings = {
    new_buffer = "<S-t>", -- open a new buffer
    new_tab = "<C-t>b", -- open a new vim tab
    save_file = "<C-s>", -- save file using :w
-   theme_toggler = "<leader>tt", -- for theme toggler, see in ui.theme_toggler
+   theme_toggler = "<leader>tx", -- for theme toggler, see in ui.theme_toggler
 
    -- terminal related mappings
    terminal = {

@@ -15,7 +15,7 @@ bufferline.setup {
       modified_icon = "",
       -- close_icon = "%@NvChad_bufferline_quitvim@%X",
       close_icon = "",
-      show_close_icon = true,
+      show_close_icon = false,
       left_trunc_marker = "",
       right_trunc_marker = "",
       max_name_length = 14,
@@ -27,7 +27,7 @@ bufferline.setup {
       show_buffer_close_icons = true,
       separator_style = "thin",
       always_show_bufferline = true,
-      diagnostics = false, -- "or nvim_lsp"
+      diagnostics = "nvim_lsp", -- "or nvim_lsp"
       custom_filter = function(buf_number)
          -- Func to filter out our managed/persistent split terms
          local present_type, type = pcall(function()

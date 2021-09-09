@@ -27,7 +27,7 @@ g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ",
 g.nvim_tree_side = "left"
 g.nvim_tree_tab_open = 0
 g.nvim_tree_update_cwd = 1
-g.nvim_tree_width = 25
+g.nvim_tree_width = 32
 g.nvim_tree_lsp_diagnostics = 0
 
 g.nvim_tree_show_icons = {
@@ -47,7 +47,7 @@ g.nvim_tree_icons = {
       staged = "✓",
       unmerged = "",
       unstaged = "✗",
-      untracked = "★",
+      untracked = "", -- *
    },
    folder = {
       -- disable indent_markers option to get arrows working or if you want both arrows and indent then just add the arrow icons in front            ofthe default and opened folders below!

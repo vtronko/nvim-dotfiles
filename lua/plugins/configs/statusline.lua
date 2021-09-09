@@ -59,30 +59,7 @@ table.insert(components.inactive, {})
 table.insert(components.inactive, {})
 table.insert(components.inactive, {})
 
-components.active[1][1] = {
-   provider = statusline_style.main_icon,
-
-   hl = {
-      fg = colors.statusline_bg,
-      bg = colors.nord_blue,
-   },
-
-   right_sep = { str = statusline_style.right, hl = {
-      fg = colors.nord_blue,
-      bg = colors.one_bg2,
-   } },
-}
-
 components.active[1][2] = {
-   provider = statusline_style.right,
-
-   hl = {
-      fg = colors.one_bg2,
-      bg = colors.lightbg,
-   },
-}
-
-components.active[1][3] = {
    provider = function()
       local filename = vim.fn.expand "%:t"
       local extension = vim.fn.expand "%:e"
@@ -91,17 +68,17 @@ components.active[1][3] = {
          icon = ""
          return icon
       end
-      return icon .. " " .. filename .. " "
+      return " " .. icon .. " " .. filename .. " "
    end,
    hl = {
       fg = colors.white,
       bg = colors.lightbg,
    },
 
-   right_sep = { str = statusline_style.right, hl = { fg = colors.lightbg, bg = colors.lightbg2 } },
+   -- right_sep = { str = statusline_style.right, hl = { fg = colors.lightbg, bg = colors.lightbg2 } },
 }
 
-components.active[1][4] = {
+components.active[1][1] = {
    provider = function()
       local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
       return "  " .. dir_name .. " "
@@ -111,22 +88,22 @@ components.active[1][4] = {
       fg = colors.grey_fg2,
       bg = colors.lightbg2,
    },
-   right_sep = { str = statusline_style.right, hi = {
-      fg = colors.lightbg2,
-      bg = colors.statusline_bg,
-   } },
+   -- right_sep = { str = statusline_style.right, hi = {
+   --    fg = colors.lightbg2,
+   --    bg = colors.statusline_bg,
+   -- } },
 }
 
-components.active[1][5] = {
+components.active[1][3] = {
    provider = "git_diff_added",
    hl = {
       fg = colors.grey_fg2,
       bg = colors.statusline_bg,
    },
-   icon = " ",
+   icon = "  ",
 }
 -- diffModfified
-components.active[1][6] = {
+components.active[1][4] = {
    provider = "git_diff_changed",
    hl = {
       fg = colors.grey_fg2,
@@ -135,7 +112,7 @@ components.active[1][6] = {
    icon = "   ",
 }
 -- diffRemove
-components.active[1][7] = {
+components.active[1][5] = {
    provider = "git_diff_removed",
    hl = {
       fg = colors.grey_fg2,
@@ -144,7 +121,7 @@ components.active[1][7] = {
    icon = "  ",
 }
 
-components.active[1][8] = {
+components.active[1][6] = {
    provider = "diagnostic_errors",
    enabled = function()
       return lsp.diagnostics_exist "Error"
@@ -153,7 +130,7 @@ components.active[1][8] = {
    icon = "  ",
 }
 
-components.active[1][9] = {
+components.active[1][7] = {
    provider = "diagnostic_warnings",
    enabled = function()
       return lsp.diagnostics_exist "Warning"
@@ -162,7 +139,7 @@ components.active[1][9] = {
    icon = "  ",
 }
 
-components.active[1][10] = {
+components.active[1][8] = {
    provider = "diagnostic_hints",
    enabled = function()
       return lsp.diagnostics_exist "Hint"
@@ -171,7 +148,7 @@ components.active[1][10] = {
    icon = "  ",
 }
 
-components.active[1][11] = {
+components.active[1][9] = {
    provider = "diagnostic_info",
    enabled = function()
       return lsp.diagnostics_exist "Information"
@@ -274,7 +251,7 @@ components.active[3][2] = {
             end
          end
       end
-      return (git_branch ~= "" and "  " .. git_branch) or git_branch
+      return (git_branch ~= "" and "  " .. git_branch .. " ") or git_branch
    end,
    hl = {
       fg = colors.grey_fg2,
@@ -282,13 +259,13 @@ components.active[3][2] = {
    },
 }
 
-components.active[3][3] = {
-   provider = " " .. statusline_style.left,
-   hl = {
-      fg = colors.one_bg2,
-      bg = colors.statusline_bg,
-   },
-}
+-- components.active[3][3] = {
+--    provider = " " .. statusline_style.left,
+--    hl = {
+--       fg = colors.one_bg2,
+--       bg = colors.statusline_bg,
+--    },
+-- }
 
 local mode_colors = {
    ["n"] = { "NORMAL", colors.red },
@@ -320,58 +297,58 @@ local chad_mode_hl = function()
    }
 end
 
-components.active[3][4] = {
-   provider = statusline_style.left,
-   hl = function()
-      return {
-         fg = mode_colors[vim.fn.mode()][2],
-         bg = colors.one_bg2,
-      }
-   end,
-}
+-- components.active[3][3] = {
+--    provider = statusline_style.left,
+--    hl = function()
+--       return {
+--          fg = mode_colors[vim.fn.mode()][2],
+--          bg = colors.one_bg2,
+--       }
+--    end,
+-- }
 
-components.active[3][5] = {
-   provider = statusline_style.vi_mode_icon,
-   hl = function()
-      return {
-         fg = colors.statusline_bg,
-         bg = mode_colors[vim.fn.mode()][2],
-      }
-   end,
-}
+-- components.active[3][5] = {
+--    provider = statusline_style.vi_mode_icon,
+--    hl = function()
+--       return {
+--          fg = colors.statusline_bg,
+--          bg = mode_colors[vim.fn.mode()][2],
+--       }
+--    end,
+-- }
 
-components.active[3][6] = {
+components.active[3][3] = {
    provider = function()
       return " " .. mode_colors[vim.fn.mode()][1] .. " "
    end,
    hl = chad_mode_hl,
 }
 
-components.active[3][7] = {
-   provider = statusline_style.left,
-   hl = {
-      fg = colors.grey,
-      bg = colors.one_bg,
-   },
-}
+-- components.active[3][6] = {
+--    provider = statusline_style.left,
+--    hl = {
+--       fg = colors.grey,
+--       bg = colors.one_bg,
+--    },
+-- }
 
-components.active[3][8] = {
-   provider = statusline_style.left,
-   hl = {
-      fg = colors.green,
-      bg = colors.grey,
-   },
-}
+-- components.active[3][7] = {
+--    provider = statusline_style.left,
+--    hl = {
+--       fg = colors.green,
+--       bg = colors.grey,
+--    },
+-- }
 
-components.active[3][9] = {
-   provider = statusline_style.position_icon,
-   hl = {
-      fg = colors.black,
-      bg = colors.green,
-   },
-}
+-- components.active[3][9] = {
+--    provider = statusline_style.position_icon,
+--    hl = {
+--       fg = colors.black,
+--       bg = colors.green,
+--    },
+-- }
 
-components.active[3][10] = {
+components.active[3][4] = {
    provider = function()
       local current_line = vim.fn.line "."
       local total_line = vim.fn.line "$"
