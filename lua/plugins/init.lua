@@ -394,4 +394,14 @@ return packer.startup(function()
          require("core.mappings").vim_fugitive()
       end,
    }
+
+   use {
+       "folke/trouble.nvim",
+       disable = not plugin_status.trouble,
+       requires = "kyazdani42/nvim-web-devicons",
+       config = function()
+           require("plugins.configs.others").trouble()
+       end,
+   }
+
 end)

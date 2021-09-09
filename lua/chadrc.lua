@@ -90,6 +90,7 @@ M.plugin_status = {
    rainbow = false, -- rainbow parentheses
    telescope_media = true, -- see media files in telescope picker
    toggleterm = true, -- toggleterm
+   trouble = true, -- trouble plugin
    truezen = true, -- no distraction mode for nvim
    vim_fugitive = true, -- git in nvim
    vim_matchup = true, -- % magic, match it but improved
@@ -139,7 +140,9 @@ M.mappings = {
    -- },
 
    reload_config = "<leader>rl",
-   hop_motion = " ";
+   hop_motion = " ",
+
+   trouble = "<leader>q",
 }
 
 -- all plugins related mappings

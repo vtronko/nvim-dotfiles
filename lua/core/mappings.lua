@@ -116,6 +116,8 @@ M.misc = function()
       end
    end
 
+   map("n", maps.trouble, ":TroubleToggle<CR>")
+
    non_config_mappings()
    optional_mappings()
    required_mappings()
