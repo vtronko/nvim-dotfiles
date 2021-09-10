@@ -314,12 +314,21 @@ return packer.startup(function()
             end,
          },
          {
-             "tom-anders/telescope-vim-bookmarks.nvim",
-            -- setup = function()
-            --    require("core.mappings").telescope_media()
-            -- end,
-         },
+            "tom-anders/telescope-vim-bookmarks.nvim",
 
+            requires = {
+                "MattesGroeger/vim-bookmarks",
+                config = function()
+                    require("plugins.configs.others").bookmarks()
+                end,
+            },
+         },
+         -- {
+             -- "nvim-telescope/telescope-project.nvim",
+             -- config = function()
+             --     require("plugins.configs.others").ts_project()
+             -- end,
+         -- },
       },
       config = function()
          require "plugins.configs.telescope"
@@ -401,6 +410,13 @@ return packer.startup(function()
        requires = "kyazdani42/nvim-web-devicons",
        config = function()
            require("plugins.configs.others").trouble()
+       end,
+   }
+
+   use {
+       "mfussenegger/nvim-lint",
+       config = function()
+           require("plugins.configs.others").lint()
        end,
    }
 

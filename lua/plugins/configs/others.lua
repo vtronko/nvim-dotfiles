@@ -201,6 +201,14 @@ M.trouble = function()
     end)
 end
 
+M.lint = function()
+    require('lint').linters_by_ft = {
+        sh = { 'shellcheck', },
+        lua = { 'luacheck', },
+    }
+    vim.api.nvim_exec("au BufWritePost,BufReadPost <buffer> lua require('lint').try_lint()", false)
+end
+
 M.toggleterm= function()
     require("toggleterm").setup{
         -- size can be a number or function which is passed the current terminal
@@ -232,6 +240,9 @@ M.toggleterm= function()
             }
         }
     }
+end
+
+M.bookmarks = function()
 end
 
 M.signature = function()

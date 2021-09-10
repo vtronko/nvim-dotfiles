@@ -15,6 +15,7 @@ opt.expandtab = options.expandtab
 opt.shiftwidth = options.shiftwidth
 opt.smartindent = options.smartindent
 
+opt.inccommand = options.inccommand
 -- disable tilde on end of buffer: https://github.com/  neovim/neovim/pull/8546#issuecomment-643643758
 opt.fillchars = { eob = " " }
 
@@ -46,7 +47,9 @@ opt.updatetime = options.updatetime
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>hl"
 
-g.mapleader = options.mapleader
+g.mapleader = options.global.mapleader
+
+g.bookmark_sign = options.global.bookmark_sign
 
 -- disable some builtin vim plugins
 local disabled_built_ins = {

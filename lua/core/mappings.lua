@@ -93,6 +93,10 @@ M.misc = function()
       cmd "silent! command PackerSync lua require 'plugins' require('packer').sync()"
       cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
 
+      map("n", plugin_maps.vim_bookmarks.toggle, ":BookmarkToggle <CR>")
+      map("n", plugin_maps.vim_bookmarks.clear, ":BookmarkClear <CR>")
+      map("n", plugin_maps.vim_bookmarks.clear_all, ":BookmarkClearAll <CR>")
+
       -- add NvChadUpdate command and mapping
 --       cmd "silent! command! NvChadUpdate lua require('nvchad').update_nvchad()"
 --       map("n", maps.update_nvchad, ":NvChadUpdate <CR>")
@@ -155,7 +159,6 @@ end
 M.dashboard = function()
    local m = plugin_maps.dashboard
 
-   map("n", m.bookmarks, ":DashboardJumpMarks <CR>")
    map("n", m.new_file, ":DashboardNewFile <CR>")
    map("n", m.open, ":Dashboard <CR>")
    map("n", m.session_load, ":SessionLoad <CR>")
@@ -176,6 +179,7 @@ M.telescope = function()
 
    map("n", m.open, ":Telescope <CR>")
    map("n", m.buffers, ":Telescope buffers <CR>")
+   map("n", m.bookmarks_all, ":Telescope vim_bookmarks <CR>")
    map("n", m.find_files, ":Telescope find_files <CR>")
    map("n", m.find_hiddenfiles, ":Telescope find_files hidden=true <CR>")
    map("n", m.git_commits, ":Telescope git_commits <CR>")

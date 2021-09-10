@@ -63,12 +63,15 @@ telescope.setup {
          find_cmd = "fd", -- find command (defaults to `fd`)
       },
       vim_bookmarks = {
+          -- todo
+          hide_filename = true,
+          shorten_path = true,
       },
    },
 }
 
-local extensions = { "themes", "terms", "fzf", "vim_bookmarks" }
-local packer_repos = [["extensions", "telescope-fzf-native.nvim", "telescope-vim-bookmarks.nvim"]]
+local extensions = { "themes", "terms", "fzf", "vim_bookmarks", }
+local packer_repos = [["extensions", "telescope-fzf-native.nvim", "telescope-vim-bookmarks.nvim", ]]
 
 if vim.fn.executable "ueberzug" == 1 then
    table.insert(extensions, "media_files")

@@ -46,8 +46,8 @@ M.options = {
    expandtab = true,
    hidden = true,
    ignorecase = true,
+   inccommand = "split",
    insert_nav = true, -- navigation in insertmode
-   mapleader = ";",
    mouse = "a",
    number = true,
    -- relative numbers in normal mode tool at the bottom of options.lua
@@ -60,6 +60,11 @@ M.options = {
    relativenumber = true,
    ruler = true,
    updatetime = 250,
+
+   global = {
+       mapleader = ";",
+       bookmark_sign = "",
+   },
 }
 
 -- these are plugin related options
@@ -180,6 +185,7 @@ M.mappings.plugin = {
    },
    telescope = {
       buffers = "<leader>bb",
+      bookmarks_all = "<leader>ba",
       find_files = "<leader>fd",
       git_commits = "<leader>cm",
       git_status = "<leader>gs",
@@ -201,6 +207,11 @@ M.mappings.plugin = {
       diff_get_3 = "<leader>gl",
       git_blame = "<leader>gb",
    },
+   vim_bookmarks = {
+       toggle = "<leader>bm",
+       clear = "<leader>brm",
+       clear_all = "<leader>brma",
+   }
 }
 
 -- user custom mappings
