@@ -94,6 +94,8 @@ M.misc = function()
       cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
 
       map("n", plugin_maps.vim_bookmarks.toggle, ":BookmarkToggle <CR>")
+      map("n", plugin_maps.vim_bookmarks.next, ":BookmarkNext <CR>")
+      map("n", plugin_maps.vim_bookmarks.prev, ":BookmarkPrev <CR>")
       map("n", plugin_maps.vim_bookmarks.clear, ":BookmarkClear <CR>")
       map("n", plugin_maps.vim_bookmarks.clear_all, ":BookmarkClearAll <CR>")
 
@@ -109,6 +111,10 @@ M.misc = function()
    map("n", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
    map("v", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
 
+   map("n", maps.trouble.lsp_document_diagnostics , "<cmd>TroubleToggle lsp_document_diagnostics<CR>")
+   map("n", maps.trouble.todo, "<cmd>TroubleToggle todo<CR>")
+   map("n", maps.trouble.references, "<cmd>TroubleToggle lsp_references<CR>")
+
    local function user_config_mappings()
       local custom_maps = config.custom.mappings or ""
       if type(custom_maps) ~= "table" then
@@ -119,8 +125,6 @@ M.misc = function()
          map(unpack(map_table))
       end
    end
-
-   map("n", maps.trouble, ":TroubleToggle<CR>")
 
    non_config_mappings()
    optional_mappings()
@@ -188,6 +192,9 @@ M.telescope = function()
    map("n", m.live_grep, ":Telescope live_grep <CR>")
    map("n", m.oldfiles, ":Telescope oldfiles <CR>")
    map("n", m.themes, ":Telescope themes <CR>")
+   map("n", m.find_files, [[:lua require('telescope.builtin').find_files{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null || echo .")[1] }<cr>]])
+   map("n", m.live_grep, [[:lua require('telescope.builtin').live_grep{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null || echo .")[1] }<cr>]])
+
 end
 
 M.telescope_media = function()

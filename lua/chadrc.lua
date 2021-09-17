@@ -1,5 +1,3 @@
--- IMPORTANT NOTE : This is the user config, can be edited. Will be preserved if updated with internal updater
-
 local M = {}
 M.ui, M.options, M.plugin_status, M.mappings, M.custom = {}, {}, {}, {}, {}
 
@@ -21,7 +19,7 @@ M.ui = {
 
    -- Enable this only if your terminal has the colorscheme set which nvchad uses
    -- For Ex : if you have onedark set in nvchad , set onedark's bg color on your terminal
-   transparency = false,
+   transparency = true,
 }
 
 -- plugin related ui options
@@ -147,7 +145,11 @@ M.mappings = {
    reload_config = "<leader>rl",
    hop_motion = " ",
 
-   trouble = "<leader>q",
+   trouble = {
+       lsp_document_diagnostics = "<leader>q",
+       todo = "<leader>todo",
+       references = "<leader>gr"
+   }
 }
 
 -- all plugins related mappings
@@ -167,7 +169,6 @@ M.mappings.plugin = {
       user_keys = "<leader>uk",
    },
    dashboard = {
-      bookmarks = "<leader>bm",
       new_file = "<leader>fn", -- basically create a new buffer
       open = "<leader>db", -- open dashboard
       session_load = "<leader>l", -- load a saved session
@@ -185,7 +186,7 @@ M.mappings.plugin = {
    },
    telescope = {
       buffers = "<leader>bb",
-      bookmarks_all = "<leader>ba",
+      bookmarks_all = "<leader>bma",
       find_files = "<leader>fd",
       git_commits = "<leader>cm",
       git_status = "<leader>gs",
@@ -193,6 +194,7 @@ M.mappings.plugin = {
       live_grep = "<leader>rg",
       oldfiles = "<leader>hh",
       themes = "<leader>theme",
+      todo = "<leader>todo"
    },
    telescope_media = {
       media_files = "<leader>fp",
@@ -209,8 +211,10 @@ M.mappings.plugin = {
    },
    vim_bookmarks = {
        toggle = "<leader>bm",
-       clear = "<leader>brm",
-       clear_all = "<leader>brma",
+       next = "<leader>bmn",
+       prev = "<leader>bmp",
+       clear = "<leader>bmr",
+       clear_all = "<leader>bmra",
    }
 }
 

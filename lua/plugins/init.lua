@@ -287,9 +287,8 @@ return packer.startup(function()
 
    use {
       "nvim-telescope/telescope.nvim",
-      cmd = "Telescope",
+      -- cmd = "Telescope",
       -- because cheatsheet is not activated by a teleacope command
-      module = "cheatsheet",
       requires = {
          {
             "sudormrfbin/cheatsheet.nvim",
@@ -411,6 +410,14 @@ return packer.startup(function()
        config = function()
            require("plugins.configs.others").trouble()
        end,
+   }
+
+   use {
+       "folke/todo-comments.nvim",
+       requires = "nvim-lua/plenary.nvim",
+       config = function()
+           require("plugins.configs.others").todo()
+       end
    }
 
    use {

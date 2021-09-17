@@ -139,12 +139,12 @@ bg("NvimTreeVertSplit", darker_black)
 fg_bg("NvimTreeWindowPicker", red, black2)
 
 -- Disable some highlight in nvim tree if transparency enabled
-if ui.transparency then
-   bg("NvimTreeNormal", "NONE")
-   bg("NvimTreeStatusLineNC", "NONE")
-   bg("NvimTreeVertSplit", "NONE")
-   fg("NvimTreeVertSplit", grey)
-end
+-- if ui.transparency then
+--    bg("NvimTreeNormal", "NONE")
+--    bg("NvimTreeStatusLineNC", "NONE")
+--    bg("NvimTreeVertSplit", "NONE")
+--    fg("NvimTreeVertSplit", grey)
+-- end
 
 -- Telescope
 fg("TelescopeBorder", line)

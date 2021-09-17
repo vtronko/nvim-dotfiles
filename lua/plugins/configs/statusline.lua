@@ -369,7 +369,9 @@ components.active[3][4] = {
 }
 
 require("feline").setup {
-   default_bg = colors.statusline_bg,
-   default_fg = colors.fg,
+   colors = {
+       bg = colors.statusline_bg,
+       fg = colors.fg,
+   },
    components = components,
 }
