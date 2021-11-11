@@ -175,8 +175,8 @@ M.mappings.plugin = {
       session_save = "<leader>s", -- save a session
    },
    nvimtree = {
-      toggle = "<leader>tt", -- file manager
-      focus = "<leader>tf"
+      toggle = "<leader>tt",
+      filetoggle = "<leader>tf",
    },
    neoformat = {
       format = "<leader>fm",
