@@ -162,32 +162,7 @@ M.load_config = function(reload)
       package.loaded[config_name or false] = nil
    end
 
-   -- don't enclose in pcall, it better break when default config is faulty
-   _G._NVCHAD_CONFIG_CONTENTS = require(default_config)
-
-   -- user config is not required to run nvchad but a optional
-   -- Make sure the config doesn't break the whole system if user config is not present or in bad state or not a table
-   -- print warning texts if user config file is  present
-   -- check if the user config is present
-   if vim.fn.filereadable(vim.fn.glob(config_file)) == 1 then
-      local present, config = pcall(require, config_name)
-      if present then
-         -- make sure the returned value is table
-         if type(config) == "table" then
-            -- data = require(config_name)
-            _G._NVCHAD_CONFIG_CONTENTS = require("core.utils").merge_table(
-               _G._NVCHAD_CONFIG_CONTENTS,
-               config,
-               to_replace
-            )
-         else
-            print("Warning: " .. config_name .. " sourced successfully but did not return a lua table.")
-         end
-      else
-         print("Warning: " .. config_file .. " is present but sourcing failed.")
-      end
-   end
-   return _G._NVCHAD_CONFIG_CONTENTS
+   return require(config_name)
 end
 
 M.map = function(mode, keys, cmd, opt)

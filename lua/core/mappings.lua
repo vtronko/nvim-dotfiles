@@ -67,23 +67,13 @@ M.misc = function()
       map("n", maps.copy_whole_file, ":%y+ <CR>") -- copy whole file content
       map("n", maps.new_buffer, ":enew <CR>") -- new buffer
       map("n", maps.new_tab, ":tabnew <CR>") -- new tabs
-      map("n", maps.line_number_toggle, ":set nu! <CR>") -- toggle numbers
       map("n", maps.save_file, ":w <CR>") -- ctrl + s to save file
 
-      -- terminal mappings --
+      -- terminal mappings 
       local term_maps = maps.terminal
       -- get out of terminal mode
       map("t", term_maps.esc_termmode, "<C-\\><C-n>")
-      -- hide a term from within terminal mode
       map("t", term_maps.esc_hide_termmode, "<C-\\><C-n> :lua require('core.utils').close_buffer() <CR>")
-      -- pick a hidden term
-      map("n", term_maps.pick_term, ":Telescope terms <CR>")
-      -- Open terminals
-      -- TODO this opens on top of an existing vert/hori term, fixme
-      map("n", term_maps.new_horizontal, ":execute 15 .. 'new +terminal' | let b:term_type = 'hori' | startinsert <CR>")
-      map("n", term_maps.new_vertical, ":execute 'vnew +terminal' | let b:term_type = 'vert' | startinsert <CR>")
-      map("n", term_maps.new_window, ":execute 'terminal' | let b:term_type = 'wind' | startinsert <CR>")
-      -- terminal mappings end --
 
       -- Add Packer commands because we are not loading it at startup
       cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
@@ -133,10 +123,6 @@ M.misc = function()
 end
 
 -- below are all plugin related mappings
-
-M.better_escape = function()
-   vim.g.better_escape_shortcut = plugin_maps.better_escape.esc_insertmode or { "" }
-end
 
 M.bufferline = function()
    local m = plugin_maps.bufferline

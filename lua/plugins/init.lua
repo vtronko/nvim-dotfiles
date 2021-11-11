@@ -123,30 +123,18 @@ return packer.startup(function()
       end,
    }
 
-   -- lsp stuff
-   -- use {
-      -- "kabouzeid/nvim-lspinstall",
-      -- opt = true,
-      -- setup = function()
-      --    require("core.utils").packer_lazy_load "nvim-lspinstall"
-      --    -- reload the current file so lsp actually starts for it
-      --    vim.defer_fn(function()
-      --       vim.cmd "silent! e %"
-      --    end, 0)
-      -- end,
-   -- }
+   use {
+       'williamboman/nvim-lsp-installer'
+   }
 
    use {
       "neovim/nvim-lspconfig",
-      after = "nvim-lspinstall",
+      after = "nvim-lsp-installer",
       config = function()
          require "plugins.configs.lspconfig"
       end,
    }
 
-   use {
-       'williamboman/nvim-lsp-installer'
-   }
 
    use {
       "ray-x/lsp_signature.nvim",
@@ -175,18 +163,6 @@ return packer.startup(function()
       end,
       cond = function()
          return require("core.utils").load_config().options.plugin.autosave == true
-      end,
-   }
-
-   use {
-      "jdhao/better-escape.vim",
-      disable = not plugin_status.esc_insertmode,
-      event = "InsertEnter",
-      config = function()
-         require("plugins.configs.others").better_escape()
-      end,
-      setup = function()
-         require("core.mappings").better_escape()
       end,
    }
 

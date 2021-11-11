@@ -131,7 +131,7 @@ M.mappings = {
       -- it does not close it, see pick_term mapping to see hidden terminals
       esc_hide_termmode = { "<Esc>" }, -- multiple mappings allowed
       -- show hidden terminal buffers in a telescope picker
-      -- pick_term = "<leader>W",
+      pick_term = "<leader>W",
       -- below three are for spawning terminals
       -- new_horizontal = "tt",
       -- new_vertical = "tt",
@@ -174,20 +174,19 @@ M.mappings.plugin = {
       session_load = "<leader>l", -- load a saved session
       session_save = "<leader>s", -- save a session
    },
-   -- note: this is an edditional mapping to escape, escape key will still work
-   -- better_escape = {
-   --    esc_insertmode = { "<leader>tt" }, -- multiple mappings allowed
-   -- },
    nvimtree = {
       toggle = "<leader>tt", -- file manager
+      focus = "<leader>tf"
    },
    neoformat = {
       format = "<leader>fm",
    },
    telescope = {
+      open = "<leader>ts",
       buffers = "<leader>bb",
       bookmarks_all = "<leader>bma",
       find_files = "<leader>fd",
+      find_hiddenfiles = "<leader>fd",
       git_commits = "<leader>cm",
       git_status = "<leader>gs",
       help_tags = "<leader>fh",

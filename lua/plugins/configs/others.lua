@@ -39,10 +39,6 @@ M.autosave = function()
    }
 end
 
-M.better_escape = function()
-   vim.g.better_escape_interval = config.options.plugin.esc_insertmode_timeout or 300
-end
-
 M.blankline = function()
    require("indent_blankline").setup {
       indentLine_enabled = 1,
@@ -265,6 +261,7 @@ M.lint = function()
     require('lint').linters_by_ft = {
         sh = { 'shellcheck', },
         lua = { 'luacheck', },
+        -- cpp = { 'clazy' },
     }
     vim.api.nvim_exec("au BufWritePost,BufReadPost <buffer> lua require('lint').try_lint()", false)
 end
