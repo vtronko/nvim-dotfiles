@@ -5,10 +5,6 @@ if not (present1 or present2) then
    return
 end
 
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
-end)
-
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -40,15 +36,20 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("v", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
--- local lsp_installer_servers = require'nvim-lsp-installer.servers'
-local lsp_installer_servers = {'clangd'}
-for _, lsp in ipairs(lsp_installer_servers) do
-    lsp_config[lsp].setup {
+local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+for type, icon in pairs(signs) do
+  -- local hl = "DiagnosticSign" .. type -- For 0.6.0
+  local hl = "LspDiagnosticsSign" .. type -- For 0.5.1
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+lsp_installer.on_server_ready(function(server)
+    local opts = {
         on_attach = on_attach,
         flags = {
             debounce_text_changes = 150,
         }
     }
-end
+
+    server:setup(opts)
+end)
