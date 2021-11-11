@@ -205,8 +205,6 @@ M.mappings.plugin = {
       minimalistic_mode = "<leader>zm", -- as it is
    },
    vim_fugitive = {
-      diff_get_2 = "<leader>gh",
-      diff_get_3 = "<leader>gl",
       git_blame = "<leader>gb",
    },
    vim_bookmarks = {
