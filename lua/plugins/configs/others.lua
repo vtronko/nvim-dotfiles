@@ -153,7 +153,7 @@ M.trouble = function()
             height = 10, -- height of the trouble list when position is top or bottom
             width = 50, -- width of the list when position is left or right
             icons = true, -- use devicons for filenames
-            mode = "lsp_workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+            mode = "workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
             fold_open = "", -- icon used for open folds
              fold_closed = "", -- icon used for closed folds
             action_keys = { -- key mappings for actions in the trouble list
@@ -190,7 +190,7 @@ M.trouble = function()
             information = "",
             other = "﫠"
         },
-        use_lsp_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
+        use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
         })
     end)
 end
@@ -234,8 +234,8 @@ M.todo = function()
         colors = {
             error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
             warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
-            info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
-            hint = { "LspDiagnosticsDefaultHint", "#10B981" },
+            info = { "DiagnosticDefaultInformation", "#2563EB" },
+            hint = { "DiagnosticDefaultHint", "#10B981" },
             default = { "Identifier", "#7C3AED" },
         },
         search = {
@@ -262,6 +262,33 @@ M.lint = function()
         -- cpp = { 'clazy' },
     }
     vim.api.nvim_exec("au BufWritePost,BufReadPost <buffer> lua require('lint').try_lint()", false)
+end
+
+M.neoclip = function()
+    require('neoclip').setup({
+        history = 1000,
+        enable_persistant_history = true,
+        preview = true,
+        default_register = '"',
+        content_spec_column = false,
+        on_paste = {
+            set_reg = false,
+        },
+        keys = {
+            i = {
+                select = '<cr>',
+                paste = '<c-p>',
+                paste_behind = '<c-k>',
+                custom = {},
+            },
+            n = {
+                select = '<cr>',
+                paste = 'p',
+                paste_behind = 'P',
+                custom = {},
+            },
+        },
+    })
 end
 
 M.toggleterm= function()
@@ -318,6 +345,70 @@ M.signature = function()
          padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
       }
    end
+end
+
+M.gotopreview = function()
+    require('goto-preview').setup {
+        width = 80; -- Width of the floating window
+        height = 15; -- Height of the floating window
+        border = {"↖", "─" ,"┐", "│", "┘", "─", "└", "│"}; -- Border characters of the floating window
+        default_mappings = false; -- Bind default mappings
+        debug = false; -- Print debug information
+        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        resizing_mappings = false; -- Binds arrow keys to resizing the floating window.
+        post_open_hook = nil; -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        -- references = { -- Configure the telescope UI for slowing the references cycling window.
+        -- telescope = telescope.themes.get_dropdown({ hide_preview = false })
+        -- };
+        -- These two configs can also be passed down to the goto-preview definition and implementation calls for one off "peak" functionality.
+        focus_on_open = false; -- Focus the floating window when opening it.
+        dismiss_on_move = true; -- Dismiss the floating window when moving the cursor.
+        force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
+        bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
+    }
+end
+
+M.dapui = function()
+    require("dapui").setup({
+        icons = { expanded = "▾", collapsed = "▸" },
+        mappings = {
+            -- Use a table to apply multiple mappings
+            expand = { "<CR>", "<2-LeftMouse>" },
+            open = "o",
+            remove = "d",
+            edit = "e",
+            repl = "r",
+        },
+        tray = {
+            elements = { "stacks" },
+            size = 10,
+            position = "bottom", -- Can be "left", "right", "top", "bottom"
+        },
+        sidebar = {
+            -- You can change the order of elements in the sidebar
+            elements = {
+                -- Provide as ID strings or tables with "id" and "size" keys
+                {
+                    id = "scopes",
+                    size = 0.8, -- Can be float or integer > 1
+                },
+                { id = "breakpoints", size = 0.2 },
+                -- { id = "stacks", size = 0.3 },
+                -- { id = "watches", size = 0.0 },
+            },
+            size = 50,
+            position = "right", -- Can be "left", "right", "top", "bottom"
+        },
+        floating = {
+            max_height = nil, -- These can be integers or a float between 0 and 1.
+            max_width = nil, -- Floats will be treated as percentage of your screen.
+            border = "single", -- Border style. Can be "single", "double" or "rounded"
+            mappings = {
+                close = { "q", "<Esc>" },
+            },
+        },
+        windows = { indent = 1 },
+    })
 end
 
 return M

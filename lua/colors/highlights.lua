@@ -108,20 +108,23 @@ fg("IndentBlanklineChar", line)
 -- [[ LspDiagnostics
 
 -- Errors
-fg("LspDiagnosticsSignError", red)
-fg("LspDiagnosticsSignWarning", yellow)
-fg("LspDiagnosticsVirtualTextError", red)
-fg("LspDiagnosticsVirtualTextWarning", yellow)
+fg("DiagnosticSignError", red)
+fg("DiagnosticSignWarning", yellow)
+fg("DiagnosticVirtualTextError", red)
+fg("DiagnosticVirtualTextWarning", yellow)
 
 -- Info
-fg("LspDiagnosticsSignInformation", green)
-fg("LspDiagnosticsVirtualTextInformation", green)
+fg("DiagnosticSignInformation", green)
+fg("DiagnosticVirtualTextInformation", green)
 
 -- Hints
-fg("LspDiagnosticsSignHint", purple)
-fg("LspDiagnosticsVirtualTextHint", purple)
+fg("DiagnosticSignHint", purple)
+fg("DiagnosticVirtualTextHint", purple)
 
 -- ]]
+
+
+fg("BookmarkSign", blue)
 
 -- NvimTree
 fg("NvimTreeEmptyFolderName", blue)
@@ -151,3 +154,7 @@ fg("TelescopeBorder", line)
 fg("TelescopePreviewBorder", grey)
 fg("TelescopePromptBorder", line)
 fg("TelescopeResultsBorder", line)
+
+-- nvim-dap
+fg("DapBreakpoint", red)
+fg("DapStopped", yellow)

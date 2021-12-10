@@ -272,17 +272,6 @@ return packer.startup(function()
       -- because cheatsheet is not activated by a teleacope command
       requires = {
          {
-            "sudormrfbin/cheatsheet.nvim",
-            disable = not plugin_status.cheatsheet,
-            after = "telescope.nvim",
-            config = function()
-               require "plugins.configs.chadsheet"
-            end,
-            setup = function()
-               require("core.mappings").chadsheet()
-            end,
-         },
-         {
             "nvim-telescope/telescope-fzf-native.nvim",
             run = "make",
          },
@@ -400,11 +389,47 @@ return packer.startup(function()
            require("plugins.configs.others").todo()
        end
    }
+  
+   use {
+       "AckslD/nvim-neoclip.lua",
+       requires = {'tami5/sqlite.lua', module = 'sqlite'},
+       config = function()
+           require("plugins.configs.others").neoclip()
+       end,
+   }
 
    use {
        "mfussenegger/nvim-lint",
        config = function()
            require("plugins.configs.others").lint()
+       end,
+   }
+
+   use {
+       "mfussenegger/nvim-dap",
+        config = function()
+            require "plugins.configs.ndap"
+        end,
+   }
+
+   use {
+       "rcarriga/nvim-dap-ui",
+       requires = {"mfussenegger/nvim-dap"},
+       config = function()
+           require "plugins.configs.others".dapui()
+       end,
+       setup = function()
+           require("core.mappings").dapui()
+       end,
+   }
+
+   use {
+       'rmagatti/goto-preview',
+       config = function()
+           require('goto-preview').setup {}
+       end,
+       setup = function()
+           require("core.mappings").gotopreview()
        end,
    }
 

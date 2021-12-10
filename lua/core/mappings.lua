@@ -101,9 +101,9 @@ M.misc = function()
    map("n", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
    map("v", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
 
-   map("n", maps.trouble.lsp_document_diagnostics , "<cmd>TroubleToggle lsp_document_diagnostics<CR>")
+   map("n", maps.trouble.lsp_document_diagnostics , "<cmd>TroubleToggle document_diagnostics<CR>")
    map("n", maps.trouble.todo, "<cmd>TroubleToggle todo<CR>")
-   map("n", maps.trouble.references, "<cmd>TroubleToggle lsp_references<CR>")
+   -- map("n", maps.trouble.references, "<cmd>TroubleToggle lsp_references<CR>")
 
    local function user_config_mappings()
       local custom_maps = config.custom.mappings or ""
@@ -133,17 +133,6 @@ M.bufferline = function()
    map("n", m.moveRight, "<C-w>l")
    map("n", m.moveUp, "<C-w>k")
    map("n", m.moveDown, "<C-w>j")
-end
-
-M.chadsheet = function()
-   local m = plugin_maps.chadsheet
-
-   map("n", m.default_keys, ":lua require('cheatsheet').show_cheatsheet_telescope() <CR>")
-   map(
-      "n",
-      m.user_keys,
-      ":lua require('cheatsheet').show_cheatsheet_telescope{bundled_cheatsheets = false, bundled_plugin_cheatsheets = false } <CR>"
-   )
 end
 
 M.dashboard = function()
@@ -178,9 +167,12 @@ M.telescope = function()
    map("n", m.help_tags, ":Telescope help_tags <CR>")
    map("n", m.live_grep, ":Telescope live_grep <CR>")
    map("n", m.oldfiles, ":Telescope oldfiles <CR>")
+   map("n", m.lsp_references, ":Telescope lsp_references<CR>")
+   map("n", m.lsp_document_symbols, ":Telescope lsp_document_symbols<CR>")
    map("n", m.themes, ":Telescope themes <CR>")
    map("n", m.find_files, [[:lua require('telescope.builtin').find_files{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null || echo .")[1] }<cr>]])
    map("n", m.live_grep, [[:lua require('telescope.builtin').live_grep{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null || echo .")[1] }<cr>]])
+   map("n", m.neoclip, ":lua require('telescope').extensions.neoclip.default()<CR>")
 
 end
 
@@ -202,6 +194,19 @@ M.vim_fugitive = function()
    local m = plugin_maps.vim_fugitive
 
    map("n", m.git_blame, ":Git blame <CR>")
+end
+
+M.dapui = function()
+    local m = plugin_maps.dapui
+    map("n", m.toggle, "<cmd>lua require('dapui').toggle('sidebar')<CR>" )
+    map("n", m.toggle_tray, "<cmd>lua require('dapui').toggle('tray')<CR>")
+end
+
+M.gotopreview = function()
+    local m = plugin_maps.gotopreview
+    map("n", m.preview, "<cmd>lua require('goto-preview').goto_preview_definition()<CR>" )
+    map("n", m.closepreview, "<cmd>lua require('goto-preview').close_all_win()<CR>" )
+
 end
 
 return M

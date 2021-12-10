@@ -127,7 +127,7 @@ components.active[1][6] = {
       return lsp.diagnostics_exist "Error"
    end,
    hl = { fg = colors.red },
-   icon = "  ",
+   icon = "  ",
 }
 
 components.active[1][7] = {
@@ -136,7 +136,7 @@ components.active[1][7] = {
       return lsp.diagnostics_exist "Warning"
    end,
    hl = { fg = colors.yellow },
-   icon = "  ",
+   icon = "  ",
 }
 
 components.active[1][8] = {
@@ -154,7 +154,7 @@ components.active[1][9] = {
       return lsp.diagnostics_exist "Information"
    end,
    hl = { fg = colors.green },
-   icon = "  ",
+   icon = "  ",
 }
 
 components.active[2][1] = {

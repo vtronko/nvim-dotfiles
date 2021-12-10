@@ -27,7 +27,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   buf_set_keymap("n", "<leader>ed", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
   buf_set_keymap("n", "<leader>ep", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "<leader>en", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
@@ -36,10 +35,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("v", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
 end
 
-local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
-  -- local hl = "DiagnosticSign" .. type -- For 0.6.0
-  local hl = "LspDiagnosticsSign" .. type -- For 0.5.1
+  local hl = "DiagnosticSign" .. type -- For 0.6.0
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 

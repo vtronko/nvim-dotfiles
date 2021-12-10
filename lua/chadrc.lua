@@ -44,16 +44,16 @@ M.options = {
    expandtab = true,
    hidden = true,
    ignorecase = true,
-   inccommand = "split",
+   inccommand = "nosplit",
    insert_nav = true, -- navigation in insertmode
    mouse = "a",
    number = true,
    -- relative numbers in normal mode tool at the bottom of options.lua
    numberwidth = 1,
    permanent_undo = false,
-   shiftwidth = 4,
+   shiftwidth = 2,
    smartindent = true,
-   tabstop = 4, -- Number of spaces that a <Tab> in the file counts for
+   tabstop = 2, -- Number of spaces that a <Tab> in the file counts for
    timeoutlen = 400,
    relativenumber = true,
    ruler = true,
@@ -105,7 +105,7 @@ M.plugin_status = {
 M.mappings = {
    -- close current focused buffer
    close_buffer = "<leader>x",
-   copy_whole_file = "<C-a>", -- copy all contents of the current buffer
+   copy_whole_file = "<C-s-a>", -- copy all contents of the current buffer
 
    -- navigation in insert mode, only if enabled in options
    insert_nav = {
@@ -148,7 +148,7 @@ M.mappings = {
    trouble = {
        lsp_document_diagnostics = "<leader>q",
        todo = "<leader>todo",
-       references = "<leader>gr"
+       -- references = "<leader>gr"
    }
 }
 
@@ -163,10 +163,6 @@ M.mappings.plugin = {
       moveRight = "<C-l>",
       moveUp = "<C-k>",
       moveDown = "<C-j>",
-   },
-   chadsheet = {
-      default_keys = "<leader>dk",
-      user_keys = "<leader>uk",
    },
    dashboard = {
       new_file = "<leader>fn", -- basically create a new buffer
@@ -192,8 +188,11 @@ M.mappings.plugin = {
       help_tags = "<leader>fh",
       live_grep = "<leader>rg",
       oldfiles = "<leader>hh",
+      lsp_references = "<leader>gr",
+      lsp_document_symbols = "<leader>ls",
       themes = "<leader>theme",
-      todo = "<leader>todo"
+      todo = "<leader>todo",
+      neoclip = "<leader>cl",
    },
    telescope_media = {
       media_files = "<leader>fp",
@@ -212,6 +211,14 @@ M.mappings.plugin = {
        prev = "<leader>bmp",
        clear = "<leader>bmr",
        clear_all = "<leader>bmra",
+   },
+   dapui = {
+       toggle = "<leader>dv",
+       toggle_tray = "<leader>df"
+   },
+   gotopreview = {
+       preview = "<leader>gp",
+       closepreview = "<leader>gP"
    }
 }
 
