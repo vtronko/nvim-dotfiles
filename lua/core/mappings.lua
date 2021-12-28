@@ -209,4 +209,10 @@ M.gotopreview = function()
 
 end
 
+M.calltree = function()
+  local m = plugin_maps.calltree
+  map("n", m.incoming_call, "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
+  map("n", m.list_symbols, "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+end
+
 return M

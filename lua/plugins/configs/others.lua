@@ -275,6 +275,7 @@ M.neoclip = function()
             set_reg = false,
         },
         keys = {
+          telescope = {
             i = {
                 select = '<cr>',
                 paste = '<c-p>',
@@ -287,6 +288,7 @@ M.neoclip = function()
                 paste_behind = 'P',
                 custom = {},
             },
+          }
         },
     })
 end
@@ -366,6 +368,15 @@ M.gotopreview = function()
         force_close = true, -- passed into vim.api.nvim_win_close's second argument. See :h nvim_win_close
         bufhidden = "wipe", -- the bufhidden option to set on the floating window. See :h bufhidden
     }
+end
+
+M.calltree = function()
+  require('calltree').setup({
+    layout = "right",
+    icons = "nerd",
+    layout_size = 50,
+    indent_guides = false,
+  })
 end
 
 M.dapui = function()

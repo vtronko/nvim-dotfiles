@@ -419,4 +419,14 @@ return packer.startup(function()
        end,
    }
 
+  -- broken currently
+  -- use {
+  --   'ldelossa/calltree.nvim',
+  --   config = function()
+  --     require('plugins.configs.others').calltree()
+  --   end,
+  --   setup = function()
+  --     require("core.mappings").calltree()
+  --   end
+  -- }
 end)
