@@ -299,17 +299,12 @@ return packer.startup(function()
    }
 
    use {
-       'easymotion/vim-easymotion',
-       disable = not plugin_status.easymotion,
-   }
-
-   use {
        'phaazon/hop.nvim',
        disable = not plugin_status.hop,
          as = 'hop',
          config = function()
              -- you can configure Hop the way you like here; see :h hop-config
-             require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+             require'hop'.setup {}
          end
    }
 

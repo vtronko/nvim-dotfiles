@@ -98,8 +98,8 @@ M.misc = function()
       map("n", maps.reload_config, ":NvChadReload<CR>")
    end
 
-   map("n", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
-   map("v", maps.hop_motion, ":lua require'hop'.hint_words()<CR>")
+   map("n", maps.hop_motion, "<cmd>lua require'hop'.hint_words()<CR>")
+   map("v", maps.hop_motion, "<cmd>lua require'hop'.hint_words()<CR>")
 
    map("n", maps.trouble.lsp_document_diagnostics , "<cmd>TroubleToggle document_diagnostics<CR>")
    map("n", maps.trouble.todo, "<cmd>TroubleToggle todo<CR>")
