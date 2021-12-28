@@ -10,6 +10,7 @@ local folder_bg = colors.folder_bg
 local green = colors.green
 local grey = colors.grey
 local grey_fg = colors.grey_fg
+local grey_fg2 = colors.grey_fg2
 local line = colors.line
 local nord_blue = colors.nord_blue
 local one_bg = colors.one_bg
@@ -108,10 +109,10 @@ fg("IndentBlanklineChar", line)
 -- [[ LspDiagnostics
 
 -- Errors
-fg("DiagnosticSignError", red)
-fg("DiagnosticSignWarning", yellow)
-fg("DiagnosticVirtualTextError", red)
-fg("DiagnosticVirtualTextWarning", yellow)
+fg("DiagnosticError", red)
+fg("DiagnosticWarn", yellow)
+fg("DiagnosticInfo", green)
+fg("DiagnosticHint", grey_fg2)
 
 -- Info
 fg("DiagnosticSignInformation", green)

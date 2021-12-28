@@ -42,21 +42,12 @@ return packer.startup(function()
    }
 
    use {
-      "famiu/feline.nvim",
+      "feline-nvim/feline.nvim",
       disable = not plugin_status.feline,
       after = "nvim-web-devicons",
       config = function()
          require "plugins.configs.statusline"
       end,
-   }
-
-   use {
-       "hoob3rt/lualine.nvim",
-       disable = not plugin_status.lualine,
-       after = "nvim-web-devicons",
-       config = function()
-           require "plugins.configs.statusline"
-       end,
    }
 
    use {

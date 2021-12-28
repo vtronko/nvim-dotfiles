@@ -28,9 +28,13 @@ telescope.setup {
             results_width = 0.8,
          },
          vertical = {
-            mirror = false,
+            height = 0.9,
+            preview_height = 0.3,
+            preview_cutoff = 0,
+            prompt_position = "bottom",
+            width = 0.8
          },
-         width = 0.87,
+         width = 0.6,
          height = 0.80,
          preview_cutoff = 120,
      },
@@ -54,8 +58,6 @@ telescope.setup {
    },
    pickers ={
      lsp_document_symbols = {
-         ignore_filename = true,
-         show_line = false,
      }
    },
    extensions = {

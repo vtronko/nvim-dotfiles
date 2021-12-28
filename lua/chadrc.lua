@@ -19,7 +19,7 @@ M.ui = {
 
    -- Enable this only if your terminal has the colorscheme set which nvchad uses
    -- For Ex : if you have onedark set in nvchad , set onedark's bg color on your terminal
-   transparency = true,
+   transparency = false,
 }
 
 -- plugin related ui options
@@ -82,7 +82,6 @@ M.plugin_status = {
    comment = true, -- universal commentor
    dashboard = false, -- a nice looking dashboard
    hop = true, -- hop — easymotion alternative
-   easymotion = false, -- easymotion
    esc_insertmode = true, -- escape from insert mode using custom keys
    feline = true, -- statusline
    lualine = false, -- statusline
@@ -164,12 +163,6 @@ M.mappings.plugin = {
       moveUp = "<C-k>",
       moveDown = "<C-j>",
    },
-   dashboard = {
-      new_file = "<leader>fn", -- basically create a new buffer
-      open = "<leader>db", -- open dashboard
-      session_load = "<leader>l", -- load a saved session
-      session_save = "<leader>s", -- save a session
-   },
    nvimtree = {
       toggle = "<leader>tt",
       filetoggle = "<leader>tf",
@@ -219,6 +212,10 @@ M.mappings.plugin = {
    gotopreview = {
        preview = "<leader>gp",
        closepreview = "<leader>gP"
+   },
+   calltree = {
+     incoming_call = "<leader>ic",
+     list_symbols = "<leader>sls",
    }
 }
 

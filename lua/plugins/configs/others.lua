@@ -62,10 +62,10 @@ M.colorizer = function()
       colorizer.setup({ "*" }, {
          RGB = true, -- #RGB hex codes
          RRGGBB = true, -- #RRGGBB hex codes
-         names = false, -- "Name" codes like Blue
-         RRGGBBAA = false, -- #RRGGBBAA hex codes
-         rgb_fn = false, -- CSS rgb() and rgba() functions
-         hsl_fn = false, -- CSS hsl() and hsla() functions
+         names = true, -- "Name" codes like Blue
+         RRGGBBAA = true, -- #RRGGBBAA hex codes
+         rgb_fn = true, -- CSS rgb() and rgba() functions
+         hsl_fn = true, -- CSS hsl() and hsla() functions
          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
 
@@ -232,10 +232,10 @@ M.todo = function()
         -- list of named colors where we try to extract the guifg from the
         -- list of hilight groups or use the hex color if hl not found as a fallback
         colors = {
-            error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
-            warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
-            info = { "DiagnosticDefaultInformation", "#2563EB" },
-            hint = { "DiagnosticDefaultHint", "#10B981" },
+            error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+            warning = { "DiagnosticWarning", "WarningMsg", "#FBBF24" },
+            info = { "DiagnosticInfo", "#2563EB" },
+            hint = { "DiagnosticHint", "#10B981" },
             default = { "Identifier", "#7C3AED" },
         },
         search = {
@@ -259,9 +259,9 @@ M.lint = function()
     require('lint').linters_by_ft = {
         sh = { 'shellcheck', },
         lua = { 'luacheck', },
-        -- cpp = { 'clazy' },
+        cpp = { 'clazy' },
     }
-    vim.api.nvim_exec("au BufWritePost,BufReadPost <buffer> lua require('lint').try_lint()", false)
+    vim.api.nvim_exec("au BufWritePost <buffer> lua require('lint').try_lint()", false)
 end
 
 M.neoclip = function()

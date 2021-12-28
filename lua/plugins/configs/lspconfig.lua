@@ -15,6 +15,9 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap=true, silent=true }
 
+  vim.api.nvim_set_keymap('n', '<leader>lsd', '<cmd>lua vim.lsp.diagnostic.disable()<CR>',  {noremap = true, silent = true})
+  vim.api.nvim_set_keymap('n', '<leader>lsde', '<cmd>lua vim.lsp.diagnostic.enable()<CR>',  {noremap = true, silent = true})
+
   buf_set_keymap("n", "<leader>gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   buf_set_keymap("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "<leader>gh", "<cmd>ClangdSwitchSourceHeader<CR>", opts)
@@ -27,9 +30,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("n", "<leader>ed", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-  buf_set_keymap("n", "<leader>ep", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "<leader>en", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  buf_set_keymap("n", "<leader>ed", "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>", opts)
+  buf_set_keymap("n", "<leader>ed", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  buf_set_keymap("n", "<leader>ep", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+  buf_set_keymap("n", "<leader>en", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   -- buf_set_keymap("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
   buf_set_keymap("n", "<leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap("v", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
