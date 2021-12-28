@@ -419,6 +419,10 @@ return packer.startup(function()
        end,
    }
 
+   use {
+     'SidOfc/mkdx'
+   }
+
   -- broken currently
   -- use {
   --   'ldelossa/calltree.nvim',
