@@ -20,6 +20,7 @@ local purple = colors.purple
 local red = colors.red
 local white = colors.white
 local yellow = colors.yellow
+local cyan = colors.cyan
 
 local ui = require("core.utils").load_config().ui
 
@@ -159,3 +160,7 @@ fg("TelescopeResultsBorder", line)
 -- nvim-dap
 fg("DapBreakpoint", red)
 fg("DapStopped", yellow)
+
+fg("HopNextKey", red)
+fg("HopNextKey1", green)
+fg("HopNextKey2", cyan)

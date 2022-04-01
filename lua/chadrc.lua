@@ -6,20 +6,20 @@ M.ui = {
    italic_comments = true,
 
    -- theme to be used, to see all available themes, open the theme switcher by <leader> + th
-   theme = "nord",
+   theme = "everforest",
 
    -- theme toggler, toggle between two themes, see theme_toggleer mappings
    theme_toggler = {
       enabled = false,
       fav_themes = {
-      --    "nord",
-      --    "everforest",
+         "nord",
+         "everforest",
       },
    },
 
    -- Enable this only if your terminal has the colorscheme set which nvchad uses
    -- For Ex : if you have onedark set in nvchad , set onedark's bg color on your terminal
-   transparency = false,
+   transparency = true,
 }
 
 -- plugin related ui options
@@ -43,7 +43,7 @@ M.options = {
    copy_del = true, -- copy deleted text ( dd key ), visual and normal mode
    expandtab = true,
    hidden = true,
-   ignorecase = true,
+   ignorecase = false,
    inccommand = "nosplit",
    insert_nav = true, -- navigation in insertmode
    mouse = "a",
@@ -75,7 +75,7 @@ M.options.plugin = {
 -- enable and disable plugins (false for disable)
 M.plugin_status = {
    autosave = false, -- to autosave files
-   blankline = true, -- beautified blank lines
+   blankline = false, -- beautified blank lines
    bufferline = true, -- buffer shown as tabs
    cheatsheet = true, -- fuzzy search your commands/keymappings
    colorizer = true,
@@ -89,7 +89,7 @@ M.plugin_status = {
    lspsignature = true, -- lsp enhancements
    neoformat = false, -- universal forlatter
    neoscroll = true, -- smooth scroll
-   rainbow = false, -- rainbow parentheses
+   rainbow = true, -- rainbow parentheses
    telescope_media = true, -- see media files in telescope picker
    toggleterm = true, -- toggleterm
    trouble = true, -- trouble plugin
@@ -116,7 +116,7 @@ M.mappings = {
       top_of_line = "<C-a>",
    },
 
-   new_buffer = "<leader>bn", -- open a new buffer
+   new_buffer = "<leader>bc", -- open a new buffer
    new_tab = "<leader>ct", -- open a new vim tab
    save_file = "<C-s>", -- save file using :w
    -- theme_toggler = "<leader>theme", -- for theme toggler, see in ui.theme_toggler
@@ -155,8 +155,8 @@ M.mappings = {
 -- to get short info about a plugin, see the respective string in plugin_status, if not present, then info here
 M.mappings.plugin = {
    bufferline = {
-      next_buffer = "<TAB>", -- next buffer
-      prev_buffer = "<S-Tab>", -- previous buffer
+      next_buffer = "<leader>bn", -- next buffer
+      prev_buffer = "<leader>bp", -- previous buffer
       --better window movement
       moveLeft = "<C-h>",
       moveRight = "<C-l>",
@@ -186,13 +186,14 @@ M.mappings.plugin = {
       themes = "<leader>theme",
       todo = "<leader>todo",
       neoclip = "<leader>cl",
+      jumplist = "<leader>jl",
    },
    telescope_media = {
       media_files = "<leader>fp",
    },
    truezen = { -- distraction free modes mapping, hide statusline, tabline, line numbers
-      ataraxis_mode = "<leader>zz", -- center
-      focus_mode = "<leader>zf",
+      ataraxis_mode = "<leader>zf", -- center
+      focus_mode = "<leader>zz",
       minimalistic_mode = "<leader>zm", -- as it is
    },
    vim_fugitive = {
@@ -216,7 +217,11 @@ M.mappings.plugin = {
    calltree = {
      incoming_call = "<leader>ic",
      list_symbols = "<leader>sls",
-   }
+   },
+   rest = {
+     run = "<leader>rs",
+     run_prev = "<leader>rsl",
+   },
 }
 
 -- user custom mappings

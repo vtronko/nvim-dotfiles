@@ -167,12 +167,14 @@ M.telescope = function()
    map("n", m.help_tags, ":Telescope help_tags <CR>")
    map("n", m.live_grep, ":Telescope live_grep <CR>")
    map("n", m.oldfiles, ":Telescope oldfiles <CR>")
+   map("n", m.jumplist, ":Telescope jumplist <CR>")
    map("n", m.lsp_references, ":Telescope lsp_references<CR>")
    map("n", m.lsp_document_symbols, ":Telescope lsp_document_symbols<CR>")
    map("n", m.themes, ":Telescope themes <CR>")
    map("n", m.find_files, [[:lua require('telescope.builtin').find_files{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null || echo .")[1] }<cr>]])
    map("n", m.live_grep, [[:lua require('telescope.builtin').live_grep{ cwd = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null || echo .")[1] }<cr>]])
    map("n", m.neoclip, ":lua require('telescope').extensions.neoclip.default()<CR>")
+
 
 end
 
@@ -213,6 +215,12 @@ M.calltree = function()
   local m = plugin_maps.calltree
   map("n", m.incoming_call, "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
   map("n", m.list_symbols, "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+end
+
+M.rest = function()
+  local m = plugin_maps.rest
+  map("n", m.run, ":lua require('rest-nvim').run()<CR>")
+  map("n", m.run_prev, ":lua require('rest-nvim').last()<CR>")
 end
 
 return M

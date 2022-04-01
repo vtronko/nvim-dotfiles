@@ -126,8 +126,10 @@ M.neoscroll = function()
    local t = {}
    -- Syntax: t[keys] = {function, {function arguments}}
    -- Use the "sine" easing function
-   t['<C-k>'] = {'scroll', {'-vim.wo.scroll', 'true', '200', [['sine']]}}
-   t['<C-j>'] = {'scroll', { 'vim.wo.scroll', 'true', '200', [['sine']]}}
+   -- t['<C-k>'] = {'scroll', {'-vim.wo.scroll' * 2 / 3, 'true', '225', [['sine']]}}
+   -- t['<C-j>'] = {'scroll', { 'vim.wo.scroll' * 2 / 3, 'true', '225', [['sine']]}}
+   t['<C-k>'] = {'scroll', { -12, 'true', '175', [['sine']]}}
+   t['<C-j>'] = {'scroll', { 12, 'true', '175', [['sine']]}}
    -- Use the "circular" easing function
    t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '225', [['sine']]}}
    t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '225', [['sine']]}}
@@ -267,7 +269,7 @@ end
 M.neoclip = function()
     require('neoclip').setup({
         history = 1000,
-        enable_persistant_history = true,
+        enable_persistent_history = true,
         preview = true,
         default_register = '"',
         content_spec_column = false,
@@ -407,8 +409,8 @@ M.dapui = function()
                 -- { id = "stacks", size = 0.3 },
                 -- { id = "watches", size = 0.0 },
             },
-            size = 50,
-            position = "right", -- Can be "left", "right", "top", "bottom"
+            size = 45,
+            position = "left", -- Can be "left", "right", "top", "bottom"
         },
         floating = {
             max_height = nil, -- These can be integers or a float between 0 and 1.

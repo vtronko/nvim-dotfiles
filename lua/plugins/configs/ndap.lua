@@ -22,7 +22,6 @@ dap.configurations.cpp =
         name = "Run",
         type = "lldb",
         request = "launch",
-        program = "/home/vtr/test/a.out",
         args = { '9' },
         program = function()
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
@@ -39,7 +38,7 @@ dap.configurations.cpp =
         --    Error on launch: Failed to attach to the target process
         -- But you should be aware of the implications:
         -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-        runInTerminal = true,
+        runInTerminal = false,
     },
     {
         name = "Attach to process",
@@ -47,6 +46,7 @@ dap.configurations.cpp =
         request = 'attach',
         pid = require('dap.utils').pick_process,
         args = {},
+        runInTerminal = false,
     },
 }
 

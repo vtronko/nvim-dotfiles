@@ -321,6 +321,7 @@ return packer.startup(function()
    use {
        'p00f/nvim-ts-rainbow',
        disable = not plugin_status.rainbow,
+       after = "nvim-treesitter",
    }
 
    use {
@@ -376,7 +377,7 @@ return packer.startup(function()
            require("plugins.configs.others").todo()
        end
    }
-  
+
    use {
        "AckslD/nvim-neoclip.lua",
        requires = {'tami5/sqlite.lua', module = 'sqlite'},
@@ -385,12 +386,12 @@ return packer.startup(function()
        end,
    }
 
-   use {
-       "mfussenegger/nvim-lint",
-       config = function()
-           require("plugins.configs.others").lint()
-       end,
-   }
+   -- use {
+   --     "mfussenegger/nvim-lint",
+   --     config = function()
+   --         require("plugins.configs.others").lint()
+   --     end,
+   -- }
 
    use {
        "mfussenegger/nvim-dap",
@@ -423,6 +424,69 @@ return packer.startup(function()
    use {
      'SidOfc/mkdx'
    }
+
+   use {
+     "theHamsta/nvim-dap-virtual-text",
+     config = function()
+       require("nvim-dap-virtual-text").setup {
+         enabled = true,                     -- enable this plugin (the default)
+         enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+         highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+         highlight_new_as_changed = false,   -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+         show_stop_reason = true,            -- show stop reason when stopped for exceptions
+         commented = false,                  -- prefix virtual text with comment string
+         -- experimental features:
+         virt_text_pos = 'eol',              -- position of virtual text, see `:h nvim_buf_set_extmark()`
+         all_frames = false,                 -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+         virt_lines = false,                 -- show virtual lines instead of virtual text (will flicker!)
+         virt_text_win_col = nil             -- position the virtual text at a fixed window column (starting from the first text column) ,
+         -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
+       }
+     end,
+   }
+
+   use {
+     "NTBBloodbath/rest.nvim",
+     requires = { "nvim-lua/plenary.nvim" },
+     config = function()
+       require("rest-nvim").setup({
+         -- Open request results in a horizontal split
+         result_split_horizontal = false,
+         -- Skip SSL verification, useful for unknown certificates
+         skip_ssl_verification = true,
+         -- Highlight request on run
+         highlight = {
+           enabled = true,
+           timeout = 150,
+         },
+         result = {
+           -- toggle showing URL, HTTP info, headers at top the of result window
+           show_url = true,
+           show_http_info = true,
+           show_headers = true,
+         },
+         -- Jump to request line on run
+         jump_to_request = false,
+         env_file = '.env',
+         custom_dynamic_variables = {},
+         yank_dry_run = true,
+       })
+     end,
+     setup = function()
+       require("core.mappings").rest()
+     end,
+   }
+
+   use { "beauwilliams/focus.nvim", config = function() require("focus").setup() end }
+-- Or lazy load with `module` option. See further down for info on how to lazy load when using FocusSplit commands
+-- Or lazy load this plugin by creating an arbitrary command using the cmd option in packer.nvim
+    -- use {
+    --   'beauwilliams/focus.nvim', cmd = { "FocusSplitNicely", "FocusSplitCycle" }, module = "focus",
+    --   config = function()
+    --     require("focus").setup({hybridnumber = true})
+    --   end
+    -- }
+
 
   -- broken currently
   -- use {
