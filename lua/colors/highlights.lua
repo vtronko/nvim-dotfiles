@@ -38,6 +38,10 @@ local function fg(group, color)
    cmd("hi " .. group .. " guifg=" .. color)
 end
 
+local function italic(group)
+  cmd("hi " .. group .. " gui=italic")
+end
+
 -- Define bg and fg color
 -- @param group Group
 -- @param fgcol Fg Color
@@ -164,3 +168,5 @@ fg("DapStopped", yellow)
 fg("HopNextKey", red)
 fg("HopNextKey1", green)
 fg("HopNextKey2", cyan)
+
+italic("TSDefinitionUsage")

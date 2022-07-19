@@ -13,8 +13,8 @@ return packer.startup(function()
 
    -- this is the nvchad core repo containing utilities for some features like theme swticher, no need to lazy load
    use {
-      "Nvchad/extensions",
-      commit = "d019bddd8f7ad8b4c68b5b0c83caf4d945972a4d",
+      "NvChad/extensions",
+      commit = "aca0859598b1107a206bf3bc9111d461c006ac84",
    }
 
    use {
@@ -27,7 +27,8 @@ return packer.startup(function()
    }
 
    use {
-      "NvChad/nvim-base16.lua",
+      "NvChad/base46",
+      commit = "2ae23be472bdf32889e63341f74cfaf8ba1c4847",
       after = "packer.nvim",
       config = function()
          require("colors").init()
@@ -36,7 +37,7 @@ return packer.startup(function()
 
    use {
       "kyazdani42/nvim-web-devicons",
-      after = "nvim-base16.lua",
+      after = "base46",
       config = function()
          require "plugins.configs.icons"
       end,
