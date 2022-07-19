@@ -391,37 +391,44 @@ M.dapui = function()
             remove = "d",
             edit = "e",
             repl = "r",
+            toggle = "t",
         },
-        tray = {
-            elements = { "stacks" },
-            size = 10,
-            position = "bottom", -- Can be "left", "right", "top", "bottom"
-        },
-        sidebar = {
-            -- You can change the order of elements in the sidebar
+        expand_lines = vim.fn.has("nvim-0.7"),
+        layouts = {
+          {
+            id = "sidebar",
             elements = {
-                -- Provide as ID strings or tables with "id" and "size" keys
-                {
-                    id = "scopes",
-                    size = 0.8, -- Can be float or integer > 1
-                },
-                { id = "breakpoints", size = 0.2 },
-                -- { id = "stacks", size = 0.3 },
-                -- { id = "watches", size = 0.0 },
+              -- Elements can be strings or table with id and size keys.
+              "scopes",
+              { id = "breakpoints", size = 0.25 },
             },
-            size = 45,
-            position = "left", -- Can be "left", "right", "top", "bottom"
-        },
-        floating = {
-            max_height = nil, -- These can be integers or a float between 0 and 1.
-            max_width = nil, -- Floats will be treated as percentage of your screen.
-            border = "single", -- Border style. Can be "single", "double" or "rounded"
-            mappings = {
-                close = { "q", "<Esc>" },
+            size = 30,
+            position = "right",
+          },
+          {
+            elements = {
+              "stacks"
             },
+            size = 0.25, -- 25% of total lines
+            position = "bottom",
+          },
         },
         windows = { indent = 1 },
+        render = {
+          max_type_length = nil, -- Can be integer or nil.
+        }
     })
+
+    local dap, dapui = require("dap"), require("dapui")
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated["dapui_config"] = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited["dapui_config"] = function()
+      dapui.close()
+    end
 end
 
 return M

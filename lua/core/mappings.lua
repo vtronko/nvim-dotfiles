@@ -200,8 +200,8 @@ end
 
 M.dapui = function()
     local m = plugin_maps.dapui
-    map("n", m.toggle, "<cmd>lua require('dapui').toggle('sidebar')<CR>" )
-    map("n", m.toggle_tray, "<cmd>lua require('dapui').toggle('tray')<CR>")
+    map("n", m.toggle, "<cmd>lua require('dapui').toggle(1)<CR>" )
+    map("n", m.toggle_tray, "<cmd>lua require('dapui').toggle(2)<CR>")
 end
 
 M.gotopreview = function()
