@@ -17,10 +17,14 @@ local one_bg = colors.one_bg
 local one_bg2 = colors.one_bg2
 local pmenu_bg = colors.pmenu_bg
 local purple = colors.purple
+local dark_purple = colors.dark_purple
 local red = colors.red
 local white = colors.white
 local yellow = colors.yellow
 local cyan = colors.cyan
+local teal = colors.teal
+local sun = colors.sun
+local vibrant_green = colors.vibrant_green
 
 local ui = require("core.utils").load_config().ui
 
@@ -66,7 +70,7 @@ fg("cursorlinenr", white)
 fg("EndOfBuffer", black)
 
 -- For floating windows
-fg("FloatBorder", blue)
+fg("FloatBorder", line)
 bg("NormalFloat", one_bg)
 
 -- Pmenu
@@ -119,9 +123,16 @@ fg("DiagnosticWarn", yellow)
 fg("DiagnosticInfo", green)
 fg("DiagnosticHint", grey_fg2)
 
+italic("DiagnosticError")
+italic("DiagnosticWarn")
+italic("DiagnosticInfo")
+italic("DiagnosticHint")
+
 -- Info
 fg("DiagnosticSignInformation", green)
+-- italic("DiagnosticSignInformation")
 fg("DiagnosticVirtualTextInformation", green)
+-- italic("DiagnosticVirtualTextInformation")
 
 -- Hints
 fg("DiagnosticSignHint", purple)
@@ -161,12 +172,26 @@ fg("TelescopePreviewBorder", grey)
 fg("TelescopePromptBorder", line)
 fg("TelescopeResultsBorder", line)
 
+bg("TelescopeTitle", pmenu_bg)
+bg("TelescopePromptTitle", teal)
+bg("TelescopeResultsTitle", teal)
+
 -- nvim-dap
 fg("DapBreakpoint", red)
 fg("DapStopped", yellow)
 
-fg("HopNextKey", red)
-fg("HopNextKey1", green)
-fg("HopNextKey2", cyan)
+fg("HopNextKey", dark_purple)
+fg("HopNextKey1", sun)
+fg("HopNextKey2", vibrant_green)
 
+-- refactor
 italic("TSDefinitionUsage")
+
+-- cmp
+fg("CmpBorder", line)
+fg("CmpDocBorder", teal)
+
+-- orgmode
+fg("OrgDone", vibrant_green)
+fg("OrgTSCheckboxHalfChecked", yellow)
+

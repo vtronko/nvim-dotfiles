@@ -6,8 +6,39 @@ end
 
 vim.opt.completeopt = "menuone,noselect"
 
+local function border(hl_name)
+  return {
+    { "┌", hl_name },
+    { "─", hl_name },
+    { "┐", hl_name },
+    { "│", hl_name },
+    { "┘", hl_name },
+    { "─", hl_name },
+    { "└", hl_name },
+    { "│", hl_name },
+  }
+end
+
+local cmp_window = require "cmp.utils.window"
+
+cmp_window.info_ = cmp_window.info
+cmp_window.info = function(self)
+  local info = self:info_()
+  info.scrollable = false
+  return info
+end
+
 -- nvim-cmp setup
 cmp.setup {
+  window = {
+    completion = {
+      border = border "CmpBorder",
+      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+    },
+    documentation = {
+      border = border "CmpDocBorder",
+    },
+  },
    snippet = {
       expand = function(args)
          require("luasnip").lsp_expand(args.body)
@@ -22,11 +53,13 @@ cmp.setup {
             vim_item.kind
          )
 
-         vim_item.menu = ({
-            nvim_lsp = "[LSP]",
-            nvim_lua = "[Lua]",
-            buffer = "[BUF]",
-         })[entry.source.name]
+         vim_item.menu = ""
+         -- vim_item.menu = ({
+         --    nvim_lsp = "[lsp]",
+         --    nvim_lua = "[lua]",
+         --    buffer = "[buf]",
+         --    orgmode = "[org]",
+         -- })[entry.source.name]
 
          return vim_item
       end,
@@ -67,6 +100,7 @@ cmp.setup {
       { name = "buffer" },
       { name = "nvim_lua" },
       { name = "path" },
-      { name = "neorg" },
+      { name = "orgmode" },
+      -- { name = "neorg" },
    },
 }

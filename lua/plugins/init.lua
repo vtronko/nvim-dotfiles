@@ -103,6 +103,8 @@ return packer.startup(function()
       end,
    }
 
+   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
    -- smooth scroll
    use {
       "karb94/neoscroll.nvim",
@@ -117,7 +119,7 @@ return packer.startup(function()
    }
 
    use {
-       'williamboman/nvim-lsp-installer'
+      "williamboman/nvim-lsp-installer"
    }
 
    use {
@@ -218,17 +220,6 @@ return packer.startup(function()
    }
 
    use {
-      "glepnir/dashboard-nvim",
-      disable = not plugin_status.dashboard,
-      config = function()
-         require "plugins.configs.dashboard"
-      end,
-      setup = function()
-         require("core.mappings").dashboard()
-      end,
-   }
-
-   use {
       "sbdchd/neoformat",
       disable = not plugin_status.neoformat,
       cmd = "Neoformat",
@@ -281,7 +272,7 @@ return packer.startup(function()
             requires = {
                 "MattesGroeger/vim-bookmarks",
                 config = function()
-                    require("plugins.configs.others").bookmarks()
+                    -- require("plugins.configs.others").bookmarks()
                 end,
             },
          },
@@ -331,7 +322,7 @@ return packer.startup(function()
    }
 
    use {
-      "Pocco81/TrueZen.nvim",
+      "Pocco81/true-zen.nvim",
       disable = not plugin_status.truezen,
       cmd = {
          "TZAtaraxis",
@@ -387,13 +378,6 @@ return packer.startup(function()
        end,
    }
 
-   -- use {
-   --     "mfussenegger/nvim-lint",
-   --     config = function()
-   --         require("plugins.configs.others").lint()
-   --     end,
-   -- }
-
    use {
        "mfussenegger/nvim-dap",
         config = function()
@@ -420,10 +404,6 @@ return packer.startup(function()
        setup = function()
            require("core.mappings").gotopreview()
        end,
-   }
-
-   use {
-     'SidOfc/mkdx'
    }
 
    use {
@@ -478,25 +458,55 @@ return packer.startup(function()
      end,
    }
 
-   use { "beauwilliams/focus.nvim", config = function() require("focus").setup() end }
--- Or lazy load with `module` option. See further down for info on how to lazy load when using FocusSplit commands
--- Or lazy load this plugin by creating an arbitrary command using the cmd option in packer.nvim
-    -- use {
-    --   'beauwilliams/focus.nvim', cmd = { "FocusSplitNicely", "FocusSplitCycle" }, module = "focus",
-    --   config = function()
-    --     require("focus").setup({hybridnumber = true})
-    --   end
-    -- }
+   use {
+     "beauwilliams/focus.nvim",
+     config = function()
+       require("focus").setup({})
+     end,
+     setup = function()
+      require("core.mappings").focus()
+     end
+   }
 
+   -- use {
+   --   "nvim-treesitter/nvim-treesitter-refactor",
+   --   after = "nvim-treesitter",
+     -- config = function()
+     --   require'nvim-treesitter.configs'.setup {
+     --     refactor = {
+     --       highlight_definitions = {
+     --         enable = true,
+     --         -- Set to false if you have an `updatetime` of ~100.
+     --         clear_on_cursor_move = true,
+     --       },
+     --       highlight_current_scope = { enable = true },
+     --     },
+     --   }
+     -- end
+   -- }
 
-  -- broken currently
-  -- use {
-  --   'ldelossa/calltree.nvim',
-  --   config = function()
-  --     require('plugins.configs.others').calltree()
-  --   end,
-  --   setup = function()
-  --     require("core.mappings").calltree()
-  --   end
-  -- }
+   -- use {
+   --   'nvim-orgmode/orgmode',
+   --   after = "nvim-treesitter",
+   --   config = function()
+   --     require "plugins.configs.orgmode"
+   --   end,
+      -- }
+
+   -- use {
+   --   'akinsho/org-bullets.nvim',
+   --   wants = "orgmode",
+   --   config = function()
+   --     require('org-bullets').setup({
+   --       symbols = {
+   --         checkboxes = {
+   --           half = { "~", "OrgTSCheckboxHalfChecked" },
+   --           done = { "✓", "OrgDone" },
+   --           todo = { " ", "OrgTODO" },
+   --         },
+   --       }
+   --     })
+   --   end
+   -- }
+
 end)

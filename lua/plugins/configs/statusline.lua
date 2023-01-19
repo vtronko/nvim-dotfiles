@@ -72,8 +72,8 @@ components.active[1][2] = {
       return " " .. icon .. " " .. filename .. " "
    end,
    hl = {
-      fg = colors.white,
-      bg = colors.lightbg,
+      fg = colors.grey_fg2,
+      bg = colors.lightbg2,
    },
 
    -- right_sep = { str = statusline_style.right, hl = { fg = colors.lightbg, bg = colors.lightbg2 } },
@@ -87,7 +87,7 @@ components.active[1][1] = {
 
    hl = {
       fg = colors.grey_fg2,
-      bg = colors.lightbg2,
+      bg = colors.lightbg,
    },
    -- right_sep = { str = statusline_style.right, hi = {
    --    fg = colors.lightbg2,

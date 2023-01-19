@@ -51,15 +51,6 @@ M.misc = function()
          map("i", inav.prev_line, "<Down>")
          map("i", inav.top_of_line, "<ESC>^i")
       end
-
-      -- check the theme toggler
-      -- if config.ui.theme_toggler then
-      --    map(
-      --       "n",
-      --       maps.theme_toggler,
-      --       ":lua require('nvchad').toggle_theme(require('utils').load_config().ui.theme_toggler.fav_themes) <CR>"
-      --    )
-      -- end
    end
 
    local function required_mappings()
@@ -147,7 +138,8 @@ end
 M.nvimtree = function()
    map("n", plugin_maps.nvimtree.toggle, ":NvimTreeToggle <CR>")
    -- map("n", plugin_maps.nvimtree.focus, ":NvimTreeFocus <CR>")
-   map("n", plugin_maps.nvimtree.filetoggle, ":NvimTreeFindFileToggle <CR>")
+   -- map("n", plugin_maps.nvimtree.filetoggle, ":NvimTreeFindFileToggle <CR>")
+   map("n", plugin_maps.nvimtree.filetoggle, ":NvimTreeFindFile <CR>")
 end
 
 M.neoformat = function()
@@ -196,6 +188,7 @@ M.vim_fugitive = function()
    local m = plugin_maps.vim_fugitive
 
    map("n", m.git_blame, ":Git blame <CR>")
+   map("n", m.git_diff, ":Git diff <CR>")
 end
 
 M.dapui = function()
@@ -221,6 +214,17 @@ M.rest = function()
   local m = plugin_maps.rest
   map("n", m.run, ":lua require('rest-nvim').run()<CR>")
   map("n", m.run_prev, ":lua require('rest-nvim').last()<CR>")
+end
+
+M.focus = function()
+  local m = plugin_maps.focus
+  map("n", m.toggle, ":FocusToggle<CR>")
+  map("n", m.equalize, ":FocusEqualise<CR>")
+end
+
+M.orgmode = function()
+  local m = plugin_maps.orgmode
+  map("n", m.toggle_checkbox, ":lua require('orgmode').action('org_mappings.toggle_checkbox')<CR>")
 end
 
 return M

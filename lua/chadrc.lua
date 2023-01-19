@@ -8,15 +8,6 @@ M.ui = {
    -- theme to be used, to see all available themes, open the theme switcher by <leader> + th
    theme = "everforest",
 
-   -- theme toggler, toggle between two themes, see theme_toggleer mappings
-   theme_toggler = {
-      enabled = false,
-      fav_themes = {
-         "nord",
-         "everforest",
-      },
-   },
-
    -- Enable this only if your terminal has the colorscheme set which nvchad uses
    -- For Ex : if you have onedark set in nvchad , set onedark's bg color on your terminal
    transparency = true,
@@ -145,7 +136,7 @@ M.mappings = {
    hop_motion = " ",
 
    trouble = {
-       lsp_document_diagnostics = "<leader>q",
+       lsp_document_diagnostics = "<leader>tr",
        todo = "<leader>todo",
        -- references = "<leader>gr"
    }
@@ -191,6 +182,10 @@ M.mappings.plugin = {
    telescope_media = {
       media_files = "<leader>fp",
    },
+   focus = {
+     toggle = "<leader>ft",
+     equalize = "<leader>fte",
+   },
    truezen = { -- distraction free modes mapping, hide statusline, tabline, line numbers
       ataraxis_mode = "<leader>zf", -- center
       focus_mode = "<leader>zz",
@@ -198,6 +193,7 @@ M.mappings.plugin = {
    },
    vim_fugitive = {
       git_blame = "<leader>gb",
+      git_diff = "<leader>gd",
    },
    vim_bookmarks = {
        toggle = "<leader>bm",
@@ -233,6 +229,11 @@ M.mappings.plugin = {
 -- cmd:  for vim commands, must use ':' at start and add <CR> at the end if want to execute
 -- options: see :h nvim_set_keymap() opts section
 M.custom.mappings = {
+    close_window = {
+        "n",
+        "<leader>q",
+        "<C-w>q"
+    },
     edit_config = {
         "n",
         "<leader>conf",

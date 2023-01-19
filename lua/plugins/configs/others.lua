@@ -128,18 +128,18 @@ M.neoscroll = function()
    -- Use the "sine" easing function
    -- t['<C-k>'] = {'scroll', {'-vim.wo.scroll' * 2 / 3, 'true', '225', [['sine']]}}
    -- t['<C-j>'] = {'scroll', { 'vim.wo.scroll' * 2 / 3, 'true', '225', [['sine']]}}
-   t['<C-k>'] = {'scroll', { -12, 'true', '175', [['sine']]}}
-   t['<C-j>'] = {'scroll', { 12, 'true', '175', [['sine']]}}
+   t['<C-k>'] = {'scroll', { -12, 'true', '125', [['sine']]}}
+   t['<C-j>'] = {'scroll', { 12, 'true', '125', [['sine']]}}
    -- Use the "circular" easing function
    t['<C-b>'] = {'scroll', {'-vim.api.nvim_win_get_height(0)', 'true', '225', [['sine']]}}
    t['<C-f>'] = {'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '225', [['sine']]}}
    -- Pass "nil" to disable the easing animation (constant scrolling speed)
-   t['<C-y>'] = {'scroll', {'-0.10', 'false', '100', [['sine']] }}
-   t['<C-e>'] = {'scroll', { '0.10', 'false', '100', [['sine']] }}
+   t['<C-y>'] = {'scroll', {'-0.10', 'false', '125', [['sine']] }}
+   t['<C-e>'] = {'scroll', { '0.10', 'false', '125', [['sine']] }}
    -- When no easing function is provided the default easing function (in this case "quadratic") will be used
-   t['zt']    = {'zt', {'100'}, [['sine']] }
-   t['zz']    = {'zz', {'100'}, [['sine']] }
-   t['zb']    = {'zb', {'100'}, [['sine']] }
+   t['zt']    = {'zt', {'50'}, [['sine']] }
+   t['zz']    = {'zz', {'50'}, [['sine']] }
+   t['zb']    = {'zb', {'50'}, [['sine']] }
    -- t['gg']    = {'scroll', {'-2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
    -- t['G']     = {'scroll', {'2*vim.api.nvim_buf_line_count(0)', 'true', '1', '5', e}}
 
@@ -255,15 +255,6 @@ M.todo = function()
             -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
         },
     }
-end
-
-M.lint = function()
-    require('lint').linters_by_ft = {
-        sh = { 'shellcheck', },
-        lua = { 'luacheck', },
-        cpp = { 'clazy' },
-    }
-    vim.api.nvim_exec("au BufWritePost <buffer> lua require('lint').try_lint()", false)
 end
 
 M.neoclip = function()

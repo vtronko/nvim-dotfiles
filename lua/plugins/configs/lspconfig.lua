@@ -5,6 +5,38 @@ if not (present1 or present2) then
    return
 end
 
+vim.lsp.handlers["textDocument/hover"] =
+  vim.lsp.with(
+  vim.lsp.handlers.hover, { border = "single" }
+)
+
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+vim.lsp.handlers.signature_help, {
+  -- Use a sharp border with `FloatBorder` highlights
+  border = "single"
+}
+)
+
+
+-- vim.lsp.handlers = {
+--   ["textDocument/hover"] =
+--     vim.lsp.with(
+--     vim.lsp.handlers.hover, { border = "single" }
+--   ),
+  -- ["textDocument/publishDiagnostics"] =
+  --   vim.lsp.with(
+  --   vim.lsp.handlers.hover, { border = "single" }
+  -- ),
+-- }
+--
+-- vim.diagnostic.handlers["textDocument/hover"] =
+--   vim.lsp.with(
+--   vim.lsp.handlers.hover, { border = "single" }
+-- )
+
+
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -18,10 +50,12 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_set_keymap('n', '<leader>lsd', '<cmd>lua vim.lsp.diagnostic.disable()<CR>',  {noremap = true, silent = true})
   vim.api.nvim_set_keymap('n', '<leader>lsde', '<cmd>lua vim.lsp.diagnostic.enable()<CR>',  {noremap = true, silent = true})
 
-  buf_set_keymap("n", "<leader>gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "<leader>gh", "<cmd>ClangdSwitchSourceHeader<CR>", opts)
-  buf_set_keymap("n", "<leader>K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap("n", "gsd", "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap("n", "gxd", "<cmd>split | lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap("n", "gh", "<cmd>ClangdSwitchSourceHeader<CR>", opts)
+  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   buf_set_keymap("n", "<leader>gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   -- buf_set_keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
@@ -31,7 +65,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   buf_set_keymap("n", "<leader>ed", "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>", opts)
-  buf_set_keymap("n", "<leader>ed", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  -- buf_set_keymap("n", "<leader>ed", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   buf_set_keymap("n", "<leader>ep", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "<leader>en", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   -- buf_set_keymap("n", "<leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
